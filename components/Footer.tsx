@@ -7,7 +7,7 @@ export default function Footer() {
   const [email, setEmail] = useState('');
 
   return (
-    <footer className="bg-black text-white px-6 lg:px-20 py-12 border-t border-white/10 text-sm">
+    <footer className="bg-gradient-to-br from-black via-stone-950 to-black text-white px-6 lg:px-20 py-12 border-t border-white/10 text-sm">
       <div className=" mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12">
 
         {/* Column 1: Logo + CTA */}
