@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Experience from './Experience';
 
 
 
@@ -52,13 +53,7 @@ export default function WhyProxy() {
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <Image
-            src="/5gcity.png"
-            alt="About us illustration"
-            className="w-full max-w-md mx-auto rounded-lg"
-            width={150}
-            height={150}
-          />
+          <Experience />
         </motion.div>
       </div>
 

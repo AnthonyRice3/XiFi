@@ -17,11 +17,6 @@ const GetStartedHero = () => {
           <p className="uppercase tracking-widest text-2xl text-center text-zinc-400 max-w-150 pt-12">
             Instantly scale your scraping, marketing, and development workflows with real mobile IPs. It&apos;s not a noun it&apos;s a Verb. 
           </p>
-
-          *
-           *  Link: https://ui.aceternity.com/components/text-generate-effect
-           *
-           *  change md:text-6xl, add more responsive code
           
           
           <div className="pb-48">
