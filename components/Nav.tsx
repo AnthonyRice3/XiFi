@@ -19,20 +19,16 @@ export function Nav() {
       link: "/",
     },
     {
-      name: "Get Started",
-      link: "/GetStarted",
-    },
-    {
-      name: "Pricing",
-      link: "#pricing",
+      name: "Proxies",
+      link: "/Proxies",
     },
     {
       name: "About Us",
       link: "/AboutUs",
     },
     {
-      name: "White Paper",
-      link: "/",
+      name: "Get Started",
+      link: "/GetStarted",
     },
   ];
 
@@ -47,7 +43,7 @@ export function Nav() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton variant="primary">White Paper</NavbarButton>
           </div>
         </NavBody>
 
@@ -88,7 +84,7 @@ export function Nav() {
                 variant="primary"
                 className="w-full"
               >
-                Book a call
+                White Paper
               </NavbarButton>
             </div>
           </MobileNavMenu>

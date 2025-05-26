@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const stats = [
-  { label: 'Customers Served', value: '10,000+' },
+  { label: 'Gigabits Used', value: '10,000+' },
   { label: 'Uptime Guarantee', value: '99.99%' },
-  { label: 'Deployments', value: '250k+' },
+  { label: 'Sq Miles Covered', value: '250k+' },
 ];
 
 export default function AboutUsSection() {
@@ -31,13 +31,13 @@ export default function AboutUsSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold leading-tight mb-4">
-            Empowering the Future of Proxies
+            What is ProXiFI?
           </h2>
           <p className="text-lg text-stone-300 mb-6">
-            At Proxidize, we are committed to building the most secure, flexible, and user-friendly proxy infrastructure in the world. Whether youre managing enterprise-scale operations or just getting started, our tools help you deploy with confidence.
+            ProXiFi is a mobile IPaaS solution for high-performance automation, data scraping, and digital marketing workflows. By leveraging cellular network infrastructure and delivering decentralized mobile access, ProXiFi delivers accurate fingerprint-friendly IP addresses that are highly effective at bypassing detection systems, CAPTCHAs, and TCP OS fingerprinting
           </p>
           <p className="text-lg text-stone-300 mb-6">
-            At Proxidize, we are committed to building the most secure, flexible, and user-friendly proxy infrastructure in the world. Whether youre managing enterprise-scale operations or just getting started, our tools help you deploy with confidence.
+            Our platform is tailored for developers, marketers, and businesses needing reliable, scalable access to mobile IPs—without traditional proxy services&apos; noise, complexity, or limitations.
           </p>
           
         </motion.div>

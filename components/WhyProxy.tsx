@@ -54,6 +54,10 @@ export default function WhyProxy() {
           viewport={{ once: true }}
         >
           <Experience />
+          <Link
+            href="/"
+            className="md:inline-block hidden px-6 py-3 text-sm font-semibold bg-amber-600 hover:bg-amber-500 rounded-lg shadow-md transition"
+          ></Link>
         </motion.div>
       </div>
 

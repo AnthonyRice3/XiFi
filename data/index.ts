@@ -385,3 +385,167 @@ export const navItems = [
         answer: "Unlike datacenter proxies, mobile proxies use real SIM cards and rotate IPs naturally, providing better anonymity and lower chances of being flagged."
       }
     ];
+
+    export const spreadsheet = [
+    {
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },{
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },{
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },{
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    },{
+      "feature": "Custom Branding",
+      "free": "❌",
+      "personal": "✅",
+      "business": "✅",
+      "enterprise": "✅"
+    },
+    {
+      "feature": "Analytics Dashboard",
+      "free": "❌",
+      "personal": "❌",
+      "business": "✅",
+      "enterprise": "✅"
+    }
+    
+  ];
+
+  export const pricing = [
+      {
+        "name": "Free",
+        "description": "No credit card needed.",
+        "monthly": 0,
+        "yearly": 0,
+        "maxEndpoints": 5,
+        "cta": "Start for Free"
+      },
+      {
+        "name": "Personal",
+        "description": "For enthusiasts & hobbyists",
+        "monthly": 9,
+        "yearly": 7.2,
+        "maxEndpoints": 1,
+        "cta": "Buy Now"
+      },
+      {
+        "name": "Business",
+        "description": "For small-medium businesses",
+        "monthly": 99,
+        "yearly": 79.2,
+        "maxEndpoints": 5,
+        "cta": "Buy Now"
+      },
+      {
+        "name": "Enterprise",
+        "description": "For enterprises or governments",
+        "monthly": "Contact",
+        "yearly": "Contact",
+        "maxEndpoints": 80,
+        "cta": "Contact Us"
+      }
+    ];
+
+    export type Plan = {
+      name: string;
+      description: string;
+      monthly: number | string;
+      yearly: number | string;
+      maxEndpoints: number;
+      cta: string;
+    };
+  

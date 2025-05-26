@@ -19,8 +19,9 @@ export default function Home() {
         <Hero />
         <GetStarted />
         <AboutUsSection />
-        <Features />
+        
         <Works />
+        <Features />
         <HIWSection />
         
         <MaskText />
