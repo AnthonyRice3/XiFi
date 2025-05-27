@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 export function AboutHero() {
   return (
-    <div className=" py-40 dark:bg-black bg-transparent w-full">
+    <div className=" py-40 dark:bg-black bg-transparent w-full ">
       <div className="max-w-7xl mx-auto text-center">
         <p className="font-bold text-xl md:text-4xl dark:text-white text-white">
           Remote To Our Nodes, They&apos;re{" "}

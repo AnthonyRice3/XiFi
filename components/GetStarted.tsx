@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 
 
-export function GetStarted() {
+export default function GetStarted() {
 
   const router = useRouter();
 
@@ -22,7 +22,7 @@ export function GetStarted() {
         <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
       </div>
       <div className="px-4 py-10 md:py-20">
-        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-amber-200 md:text-4xl lg:text-7xl dark:text-slate-300">
+        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-zinc-500 md:text-4xl lg:text-7xl dark:text-slate-300">
           {"Get a Mobile Proxy Now!"
             .split(" ")
             .map((word, index) => (

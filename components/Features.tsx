@@ -1,84 +1,73 @@
-import { cn } from "@/lib/utils";
-import {
-  IconAdjustmentsBolt,
-  IconCloud,
-  IconCurrencyDollar,
-  IconEaseInOut,
-  IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
-  IconTerminal2,
-} from "@tabler/icons-react";
+"use client"
 
-export function Features() {
-  const features = [
+
+import { cn } from "@/lib/utils";
+import { IconAdjustmentsBolt, IconCloud, IconCurrencyDollar, IconEaseInOut, IconHeart, IconHelp, IconRouteAltLeft, IconTerminal2 } from "@tabler/icons-react";
+
+const FeatureSection = () => {
+
+   const features = [
     {
-      title: "Built for developers",
+      title: "Developer Ready",
       description:
-        "Built for engineers, developers, dreamers, thinkers and doers.",
+        "Built for coders, scrapers, and automation engineers. Seamless integration with your stack.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Ease of use",
+      title: "Simple Setup",
       description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
+        "Get started in minutes. No complex configs—just plug, proxy, and go.",
       icon: <IconEaseInOut />,
     },
     {
-      title: "Pricing like no other",
+      title: "Transparent Pricing",
       description:
-        "Our prices are best in the market. No cap, no lock, no credit card required.",
+        "No hidden fees, throttling, or overage traps. Just clean, predictable pricing.",
       icon: <IconCurrencyDollar />,
     },
     {
-      title: "100% Uptime guarantee",
-      description: "We just cannot be taken down by anyone.",
+      title: "Reliable Uptime",
+      description:
+        "Stay connected around the clock. We optimize for 99.99% uptime and consistent performance.",
       icon: <IconCloud />,
     },
     {
-      title: "Multi-tenant Architecture",
-      description: "You can simply share passwords instead of buying new seats",
+      title: "Secure by Design",
+      description:
+        "Device fingerprint masking, IP rotation, and traffic obfuscation come standard.",
       icon: <IconRouteAltLeft />,
     },
     {
-      title: "24/7 Customer Support",
+      title: "24/7 Expert Support",
       description:
-        "We are available a 100% of the time. Atleast our AI Agents are.",
+        "Real help when you need it. Live chat and AI support agents always on standby.",
       icon: <IconHelp />,
     },
     {
-      title: "Money back guarantee",
+      title: "Risk-Free Trial",
       description:
-        "If you donot like EveryAI, we will convince you to like us.",
+        "Try any plan with peace of mind. Full refunds available within the first 7 days.",
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
-      icon: <IconHeart />,
-    },
-    {
-      title: "Money back ",
+      title: "Scalable Plans",
       description:
-        "If you donot like EveryAI, we will convince you to like us.",
-      icon: <IconAdjustmentsBolt />,
-    },
-    {
-      title: "And everything else 12",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
+        "Start small or go enterprise. Plans grow with your needs—no switching headaches.",
       icon: <IconHeart />,
     },
-   
   ];
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-20 mx-auto bg-zinc-300 px-24">
       
       {features.map((feature, index) => (
         <Feature key={feature.title} {...feature} index={index} />
       ))}
     </div>
   );
-}
+};
+
+export default FeatureSection
 
 const Feature = ({
   title,
@@ -94,7 +83,7 @@ const Feature = ({
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r  py-10 relative group/feature dark:border-neutral-800",
+        "flex flex-col lg:border-r  py-20 relative group/feature dark:border-neutral-800 bg-gradient-to-br from-black via-stone-950 to-black",
         (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
         index < 4 && "lg:border-b dark:border-neutral-800"
       )}
@@ -120,3 +109,4 @@ const Feature = ({
     </div>
   );
 };
+

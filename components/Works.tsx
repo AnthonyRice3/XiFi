@@ -6,22 +6,22 @@ import Image from 'next/image';
 
 const Works = () => {
   return (
-    <div className="bg-amber-50 py-2">
+    <div className="bg-zinc-300 py-2">
         <h1 className="heading text-center font-bold text-7xl text-zinc-900 py-4">
-       Privacy. Performance. Proxify!{" "}
+          Choose A Plan{" "}
         {/* <span className="text-purple-400">recent projects</span> */}
       </h1>
       <div className="flex flex-wrap items-center justify-center p-4 py-8 gap-x-24 gap-y-8 mt-10 ">
       {projects.map((item) => (
           <div
-            className="flex items-center justify-center w-[80vw] h-[25rem] lg:min-h-[32.5rem] sm:w-96 "
+            className="flex items-center justify-center lg:min-h-[32.5rem] sm:w-96 "
             key={item.id}
           >
             <PinContainer
               title="View Plan"
               
             >
-              <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10 g-gradient-to-br -from-black via-stone-950 to-black">
+              <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10 ">
                 <div
                   className="bg-transparent relative w-full h-full overflow-hidden lg:rounded-3xl"
                   // style={{ backgroundColor: "#13162D" }}

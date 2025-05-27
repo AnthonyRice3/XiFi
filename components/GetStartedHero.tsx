@@ -8,7 +8,7 @@ import { ColourfulText } from './ui/ColorfulText';
 
 const GetStartedHero = () => {
   return (
-    <div className='bg-gradient-to-br from-black via-stone-950 to-black'>
+    <div className=''>
        <WavyBackground >
       
 

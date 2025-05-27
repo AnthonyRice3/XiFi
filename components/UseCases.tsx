@@ -49,7 +49,7 @@ export default function UseCases() {
   const x = useTransform(scrollXProgress, [0, 1], ["0%", "-100%"]);
 
   return (
-    <section className="relative overflow-x-auto py-20  dark:bg-gray-950 bg-white">
+    <section className="relative overflow-x-auto py-20  dark:bg-gray-950 bg-black">
       {/* <h2 className="text-3xl font-bold text-center mb-16 text-amber-400 dark:text-white">
         Who Are Mobile Proxies For?
       </h2> */}

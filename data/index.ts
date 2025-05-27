@@ -366,6 +366,7 @@ export const navItems = [
         "/j.png",
     },
   ];
+  
 
   export const faqs = [
       {
@@ -385,6 +386,10 @@ export const navItems = [
         answer: "Unlike datacenter proxies, mobile proxies use real SIM cards and rotate IPs naturally, providing better anonymity and lower chances of being flagged."
       }
     ];
+
+     
+  
+
 
     export const spreadsheet = [
     {

@@ -11,7 +11,7 @@ const stats = [
 
 export default function AboutUsSection() {
   return (
-    <section className="relative py-20  text-white ">
+    <section className="relative py-20  text-white bg-black">
       <div className="w-full absolute left-0 -bottom-72 min-h-96">
       <Image
         src="/footer-grid.svg"

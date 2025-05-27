@@ -129,12 +129,12 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
   return (
     <div
       className={cn(
-        "h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-stone-950 to-black",
+        "h-screen flex flex-col items-center justify-center ",
         containerClassName
       )}
     >
       <canvas
-        className="absolute inset-0 z-0 bg-gradient-to-br from-black via-stone-950 to-black"
+        className="absolute inset-0 z-0 "
         ref={canvasRef}
         id="canvas"
         style={isSafari ? { filter: `blur(${blur}px)` } : {}}

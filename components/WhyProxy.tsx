@@ -9,7 +9,7 @@ import Experience from './Experience';
 
 export default function WhyProxy() {
   return (
-    <section className="relative py-20  text-white bg-white">
+    <section className="relative py-2  text-white bg-black">
       <div className="w-full absolute left-0 -bottom-72 min-h-96 z-[-10]">
       <Image
         src="/footer-grid.svg"
@@ -54,10 +54,7 @@ export default function WhyProxy() {
           viewport={{ once: true }}
         >
           <Experience />
-          <Link
-            href="/"
-            className="md:inline-block hidden px-6 py-3 text-sm font-semibold bg-amber-600 hover:bg-amber-500 rounded-lg shadow-md transition"
-          ></Link>
+          
         </motion.div>
       </div>
 
