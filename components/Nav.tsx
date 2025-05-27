@@ -23,19 +23,19 @@ export function Nav() {
       link: "/Proxies",
     },
     {
-      name: "About Us",
+      name: "About",
       link: "/AboutUs",
     },
     {
-      name: "Get Started",
-      link: "/GetStarted",
+      name: "Contact",
+      link: "/Contact",
     },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full bg-black pt-4">
+    <div className="relative w-full bg-black pt-8">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="bg-zinc-400">
@@ -43,7 +43,7 @@ export function Nav() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">White Paper</NavbarButton>
+            <NavbarButton href="" variant="primary">White Paper</NavbarButton>
           </div>
         </NavBody>
 

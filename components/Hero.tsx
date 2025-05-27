@@ -18,7 +18,7 @@ export function Hero() {
 
   return (
     <div
-      className="h-[400vh] dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
+      className="h-[400vh] dark:border dark:border-white/[0.1] relative pt-40 overflow-clip bg-black"
       ref={ref}
     >
       <HeroParallax
@@ -30,6 +30,8 @@ export function Hero() {
           pathLengthFifth,
         ]}
       />
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-amber-400 rounded-full opacity-20 blur-3xl"></div>
+      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-700 rounded-full opacity-20 blur-3xl"></div>
     </div>
   );
 }

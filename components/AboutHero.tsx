@@ -4,11 +4,11 @@ import { motion } from "motion/react";
 
 export function AboutHero() {
   return (
-    <div className=" py-40 dark:bg-black bg-transparent w-full ">
+    <div className=" pt-40 dark:bg-black bg-transparent w-full ">
       <div className="max-w-7xl mx-auto text-center">
         <p className="font-bold text-xl md:text-4xl dark:text-white text-white">
           Remote To Our Nodes, They&apos;re{" "}
-          <span className="text-amber-400">
+          <span className="text-amber-600">
             {"Everywhere".split("").map((word, idx) => (
               <motion.span
                 key={idx}
@@ -22,7 +22,7 @@ export function AboutHero() {
             ))}
           </span>
         </p>
-        <p className="text-sm md:text-lg text-amber-500 max-w-2xl mx-auto py-4">
+        <p className="text-sm md:text-lg text-zinc-500 max-w-2xl mx-auto py-4">
           Break free from traditional boundaries. Work from anywhere, at the
           comfort of your own studio apartment. Perfect for Nomads and
           Travellers.

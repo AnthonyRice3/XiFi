@@ -61,13 +61,13 @@ export default function UseCases() {
           {milestones.map((item, index) => (
             <motion.div
               key={index}
-              className=" w-[300px] bg-amber-100 dark:bg-amber-900 rounded-xl shadow-lg p-6"
+              className=" w-[300px] bg-zinc-950 dark:bg-amber-900 rounded-xl shadow-lg p-6"
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 40 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
               <p className="text-sm font-bold text-amber-600">{item.quarter}</p>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-semibold text-zinc-400 dark:text-white mb-2">
                 {item.title}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm">{item.description}</p>

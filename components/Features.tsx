@@ -58,7 +58,7 @@ const FeatureSection = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-20 mx-auto bg-zinc-300 px-24">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-20 mx-auto bg-zinc-300 px-24 md:px-0">
       
       {features.map((feature, index) => (
         <Feature key={feature.title} {...feature} index={index} />
@@ -69,7 +69,7 @@ const FeatureSection = () => {
 
 export default FeatureSection
 
-const Feature = ({
+const  Feature = ({
   title,
   description,
   icon,
@@ -89,10 +89,10 @@ const Feature = ({
       )}
     >
       {index < 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-amber-400 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-amber-600 dark:from-neutral-800 to-transparent pointer-events-none" />
       )}
       {index >= 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-amber-400 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-amber-600 dark:from-neutral-800 to-transparent pointer-events-none" />
       )}
       <div className="mb-4 relative z-10 px-10 text-neutral-600 dark:text-neutral-400">
         {icon}

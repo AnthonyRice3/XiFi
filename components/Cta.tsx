@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Cta() {
   return (
-    <section className=" py-16 px-4 sm:px-8 lg:px-24 bg-white">
+    <section className=" py-16 px-4 sm:px-8 lg:px-24 bg-black">
       {/* background grid */}
       
 
@@ -23,9 +23,9 @@ export default function Cta() {
           Reach out to me today and let&apos;s discuss how I can help you
           achieve your goals.
         </p>
-        <Link href="/">
+        <Link href="/Proxies">
           <MagicButton
-            title="Let's get in touch"
+            title="Join Community"
             icon={<FaLocationArrow />}
             position="right"
           />

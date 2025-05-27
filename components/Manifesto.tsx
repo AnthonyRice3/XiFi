@@ -3,8 +3,8 @@ import React from "react";
 
 const Manifesto = () => {
   return (
-    <section className=" text-white py-16 px-6 md:px-20">
-      <div className="max-w-4xl mx-auto text-left md:ml-32">
+    <section className=" text-white py-16 px-6 md:px-20 bg-black">
+      <div className="max-w-4xl mx-auto md:ml-32">
         <h2 className="text-4xl md:text-5xl font-extrabold uppercase mb-6 text-white">
           Our <span className="text-amber-600">Manifesto</span>
         </h2>

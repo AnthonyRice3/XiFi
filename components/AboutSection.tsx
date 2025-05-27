@@ -1,28 +1,31 @@
 import React from "react";
-import { Marquee } from "./Marquee";
+// import { Marquee } from "./Marquee";
+
+import { Magnifier } from "./Magnifier";
+import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 interface AboutSectionProps {
   videoId: string;
-  title: string;
   description: string;
   description2: string;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({  title, description, description2 }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({  description, description2 }) => {
   return (
-    <section className="relative mx-auto my-10 flex max-w-7xl flex-col h-full md:flex-row items-center justify-center gap-6 p-6 bg-gradient-to-bl from-amber-500 to-amber-700 rounded-2xl shadow-md">
+    <section className="relative mx-auto flex pt-12 px-32 flex-col h-full md:flex-row items-center justify-center gap-6 p-6 bg-black rounded-t-3xl shadow-md ">
       {/* Left Side: YouTube Video */}
-      <div className="w-auto md:w-1/2 md:h-full text-center ">
-        <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
-        <p className="text-slate-800 text-base leading-7 font-semibold">{description}</p>
+      <div className="w-auto md:w-1/2 md:h-full text-center px-12">
+        <TextGenerateEffect words="Privacy. Performance. Proxify!"
+            className="text-center text-[40px] md:text-5xl lg:text-6xl " />
+        <p className="text-zinc-500 text-base leading-9 font-semibold">{description}</p>
         <br />
-        <p className="text-slate-800 text-base leading-7 font-semibold">{description2}</p>
+        <p className="text-zinc-500 text-base leading-9 font-semibold">{description2}</p>
       </div>
 
       {/* Right Side: Info */}
       <div className="w-full h-full md:w-1/2 space-y-4 ">
       <div className="w-full h-1/3">
-      <Marquee />
+      <Magnifier />
         </div>
       </div>
     </section>
@@ -33,7 +36,6 @@ export default function AboutSectionWrapper() {
   return (
     <AboutSection
       videoId="KiBLMK7_ObE"
-      title="Proxify"
       description="hi welcome to proxifi hi welcome to proxifi hi welcome to proxifi hi welcome to proxifi Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
 
 Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.

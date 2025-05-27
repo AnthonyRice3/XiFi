@@ -5,10 +5,10 @@ import { GlowingEffect } from "@/components/ui/GlowEffect";
 
 export function GlowGrid() {
   return (
-    <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2 py-12 px-24">
+    <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2 py-12 px-72 bg-white">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-        icon={<Box className="h-4 w-4 text-amber-400 dark:text-neutral-400" />}
+        icon={<Box className="h-4 w-4 bg text-amber-400 dark:text-neutral-400" />}
         title="Do things the right way"
         description="Running out of copy so I'll write anything."
       />
@@ -54,7 +54,7 @@ interface GridItemProps {
 const GridItem = ({ area, icon, title, description }: GridItemProps) => {
   return (
     <li className={`min-h-[14rem] list-none ${area}`}>
-      <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3">
+      <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3 bg-gradient-to-br from-black via-stone-950 to-black">
         <GlowingEffect
           spread={40}
           glow={true}
@@ -68,7 +68,7 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
               {icon}
             </div>
             <div className="space-y-3">
-              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-amber-400 md:text-2xl/[1.875rem] dark:text-white">
+              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-zinc-200 md:text-2xl/[1.875rem] dark:text-white">
                 {title}
               </h3>
               <h2 className="font-sans text-sm/[1.125rem] text-amber-400 md:text-base/[1.375rem] dark:text-neutral-400 [&_b]:md:font-semibold [&_strong]:md:font-semibold">

@@ -13,7 +13,7 @@ interface Plan {
   cta: string;
 }
 
-export default function DynamicPricing() {
+export default function DynamicPricingEndpoints() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [endpoints, setEndpoints] = useState<number>(1);
 
@@ -23,34 +23,35 @@ export default function DynamicPricing() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 min-h-[450px]">
-      <div className="flex justify-center gap-4 mb-6">
+    <div className="max-w-7xl mx-auto px-4 py-8 min-h-[550px]">
+      <h1 className="text-center pb-8 text-xl text-zinc-600">Choose a package Based on Endpoints</h1>
+      <div className="flex justify-center gap-4 mb-6 bg-gradient-to-br from-black via-stone-950 to-black">
         <button
           onClick={() => setBillingCycle("monthly")}
           className={`px-4 py-2 rounded-full border ${
             billingCycle === "monthly"
-              ? "bg-white text-black font-semibold"
-              : "bg-amber-800 text-white"
+              ? "bg-amber-600 text-zinc-100 font-semibold"
+              : "bg-white text-black"
           }`}
         >
-          Monthly
+          Shared
         </button>
         <button
           onClick={() => setBillingCycle("yearly")}
           className={`px-4 py-2 rounded-full border ${
             billingCycle === "yearly"
-              ? "bg-white text-black font-semibold"
-              : "bg-amber-500 text-white"
+              ? "bg-amber-600 text-zinc-100 font-semibold"
+              : "bg-white text-black"
           }`}
         >
-          Yearly
+          Dedicated
         </button>
       </div>
 
       <div className="text-center mb-4">
         <h2 className="text-lg font-medium mb-2 text-white">How many GBs do you need?</h2>
         <label htmlFor="endpoint-slider" className="sr-only">
-          Select number of GBs
+          Select number of Proxies
         </label>
         <input
           id="endpoint-slider"
@@ -69,7 +70,7 @@ export default function DynamicPricing() {
         {displayPlans.map((plan: Plan) => (
           <div
             key={plan.name}
-            className="border border-amber-500 rounded-2xl p-6 bg-black text-white flex flex-col"
+            className="border border-amber-500 rounded-2xl p-6 text-white flex flex-col bg-gradient-to-br from-black via-stone-950 to-black"
           >
             <h3 className="text-xl font-semibold mb-1">{plan.name}</h3>
             <p className="text-sm text-amber-400 mb-4">{plan.description}</p>
