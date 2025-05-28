@@ -101,15 +101,6 @@ export const navItems = [
       iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
       link: "/ui.aiimg.com",
     },
-    {
-      id: 4,
-      title: "SEO",
-      
-      img: "/twit.svg",
-      iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-      link: "/ui.aiimg.com",
-    },
-    
   ];
   
   export const projects2 = [

@@ -61,7 +61,7 @@ export default function UseCases() {
           {milestones.map((item, index) => (
             <motion.div
               key={index}
-              className=" w-[300px] bg-zinc-950 dark:bg-amber-900 rounded-xl shadow-lg p-6"
+              className=" w-[300px]  bg-gradient-to-br from-black via-stone-950 to-black dark:bg-amber-900 rounded-xl shadow-lg p-6"
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 40 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}

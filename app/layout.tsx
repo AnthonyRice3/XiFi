@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-// import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <ClerkProvider>
+    <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
           
@@ -34,6 +34,6 @@ export default function RootLayout({
           <Footer />
         </body>
       </html>
-    // </ClerkProvider>
+    </ClerkProvider>
   );
 }
