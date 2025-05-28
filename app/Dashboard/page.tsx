@@ -1,12 +1,11 @@
-import { auth } from '@clerk/nextjs/server';
+"use client";
 
-export default async function DashboardPage() {
-  const { userId } = await auth();
+import { DashboardSidebar } from "@/components/DashboardSidebar";
 
+export default function DashboardPage() {
   return (
-    <div>
-      <h1>Welcome to your dashboard</h1>
-      <p>User ID: {userId}</p>
-    </div>
+    <DashboardSidebar>
+      <div className="p-4">Your dashboard content goes here</div>
+    </DashboardSidebar>
   );
 }

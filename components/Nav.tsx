@@ -11,6 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/NavMenu";
 import { useState } from "react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export function Nav() {
   const navItems = [
@@ -30,19 +31,43 @@ export function Nav() {
       name: "Contact",
       link: "/Contact",
     },
+    {
+      name: "Dash",
+      link: "/Dashboard",
+    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full bg-black pt-8">
+    <div className="relative w-full bg-black py-12">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="bg-zinc-400">
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
+            <NavbarButton variant="secondary">
+              <SignedIn>
+                <UserButton 
+                  appearance={{
+                    elements: {
+                      formButtonPrimary: {
+                        fontSize: 14,
+                        textTransform: 'none',
+                        backgroundColor: '#FFFFFF',
+                        '&:hover, &:focus, &:active': {
+                          backgroundColor: '#49247A',
+                        },
+                      },
+                    },
+                  }}
+                />
+              </SignedIn>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+            </NavbarButton>
             <NavbarButton href="" variant="primary">White Paper</NavbarButton>
           </div>
         </NavBody>
@@ -77,7 +102,25 @@ export function Nav() {
                 variant="primary"
                 className="w-full"
               >
-                Login
+                <SignedIn>
+                                      <UserButton 
+                                        appearance={{
+                                    elements: {
+                                      formButtonPrimary: {
+                                        fontSize: 14,
+                                        textTransform: 'none',
+                                        backgroundColor: '#FFFFFF',
+                                        '&:hover, &:focus, &:active': {
+                                          backgroundColor: '#49247A',
+                                        },
+                                      },
+                                    },
+                                  }}
+                                      />
+                                    </SignedIn>
+                                    <SignedOut>
+                                      <SignInButton />
+                                    </SignedOut>
               </NavbarButton>
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
