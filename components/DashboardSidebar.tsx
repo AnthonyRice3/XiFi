@@ -3,15 +3,16 @@
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/SidebarItems";
 import {
-  IconArrowLeft,
   IconBrandTabler,
-  IconSettings,
+  IconCreditCard,
+  IconFileDescription,
   IconUserBolt,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 
 export function DashboardSidebar({ children }: { children: React.ReactNode }) {
   const links = [
@@ -28,12 +29,12 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
     {
       label: "Plans",
       href: "/Dashboard/Plans",
-      icon: <IconSettings className="..." />,
+      icon: <IconCreditCard className="..." />,
     },
     {
       label: "Docs",
-      href: "/Dashboard/Docs",
-      icon: <IconArrowLeft className="..." />,
+      href: "",
+      icon: <IconFileDescription className="..." />,
     },
   ];
  
@@ -41,8 +42,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800",
-        "h-[60vh]", // for your use case, use `h-screen` instead of `h-[60vh]`
+        "mx-auto flex w-full h-screen flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -61,13 +61,20 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
                 label: "Manu Arora",
                 href: "#",
                 icon: (
-                  <Image
-                    src="/3g.png"
-                    className="h-7 w-7 shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
+                  <UserButton 
+                  appearance={{
+                    elements: {
+                      formButtonPrimary: {
+                        fontSize: 14,
+                        textTransform: 'none',
+                        backgroundColor: '#FFFFFF',
+                        '&:hover, &:focus, &:active': {
+                          backgroundColor: '#49247A',
+                        },
+                      },
+                    },
+                  }}
+                />
                 ),
               }}
             />
@@ -84,7 +91,7 @@ export const Logo = () => {
       href="/"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
     >
-      <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+      <Image alt="logo" src="/ProxifiLogo.jpg" width={25} height={25}  className="rounded-full"/>
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -98,10 +105,10 @@ export const Logo = () => {
 export const LogoIcon = () => {
   return (
     <Link
-      href="#"
+      href="/"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
     >
-      <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+      <Image alt="logo" src="/ProxifiLogo.jpg" width={25} height={25}  className="rounded-full"/>
     </Link>
   );
 };

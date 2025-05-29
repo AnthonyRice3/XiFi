@@ -245,7 +245,7 @@ export const NavbarLogo = () => {
         height={30}
         className="rounded-full"
       />
-      <span className="text-black font-extrabold dark:text-white">ProXIFI</span>
+      <span className="text-black font-extrabold dark:text-white">ProXiFi</span>
     </Link>
   );
 };

@@ -1,9 +1,13 @@
 "use client";
 
+import ProXiFiHome from "@/components/ProXiFi";
+
 
 
 export default function ProXiFi() {
   return (
-      <div className="p-4">Proxies here</div>
+      <div className="">
+        <ProXiFiHome />
+      </div>
   );
 }

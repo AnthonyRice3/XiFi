@@ -4,7 +4,7 @@ import React from "react";
 
 export const DashboardHome = () => {
   return (
-    <div className="space-y-6 px-6 py-4 w-screen h-screen">
+    <div className="space-y-6 px-6 py-4 w-screen h-screen pr-24">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Dashboard</h1>
@@ -67,7 +67,7 @@ export const DashboardHome = () => {
         </div>
         <div className="h-40 border bg-white rounded-sm" />
         <footer className="text-xs text-center text-gray-500 mt-4">
-          Copyright © anyIP.io 2025
+          Copyright © ProXiFi 2025
         </footer>
       </div>
     </div>
