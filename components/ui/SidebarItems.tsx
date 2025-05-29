@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconLayoutSidebar, IconX } from "@tabler/icons-react";
 
 interface Links {
   label: string;
@@ -120,7 +120,7 @@ export const MobileSidebar = ({
         {...props}
       >
         <div className="flex justify-end z-20 w-full">
-          <IconMenu2
+          <IconLayoutSidebar
             className="text-neutral-800 dark:text-neutral-200"
             onClick={() => setOpen(!open)}
           />

@@ -17,22 +17,22 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
   const links = [
     {
       label: "Dashboard",
-      href: "/dashboard",
+      href: "/Dashboard",
       icon: <IconBrandTabler className="..." />,
     },
     {
-      label: "Proxies",
-      href: "/dashboard/proxies",
+      label: "ProXiFi",
+      href: "/Dashboard/ProXiFi",
       icon: <IconUserBolt className="..." />,
     },
     {
       label: "Plans",
-      href: "/dashboard/plans",
+      href: "/Dashboard/Plans",
       icon: <IconSettings className="..." />,
     },
     {
       label: "Docs",
-      href: "/dashboard/docs",
+      href: "/Dashboard/Docs",
       icon: <IconArrowLeft className="..." />,
     },
   ];
@@ -80,8 +80,8 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
 }
 export const Logo = () => {
   return (
-    <a
-      href="#"
+    <Link
+      href="/"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
     >
       <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
@@ -90,9 +90,9 @@ export const Logo = () => {
         animate={{ opacity: 1 }}
         className="font-medium whitespace-pre text-black dark:text-white"
       >
-        Acet Labs
+        ProXiFi
       </motion.span>
-    </a>
+    </Link>
   );
 };
 export const LogoIcon = () => {
