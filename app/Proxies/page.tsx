@@ -9,7 +9,7 @@ import Spreadsheet from "@/components/Spreadsheet";
 
 export default function Proxies() {
   return (
-    <main className="relative bg-black">
+    <main className="bg-black">
         
         <Sparkles />
         <DynamicPricingGBs />

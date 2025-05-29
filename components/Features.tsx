@@ -58,7 +58,7 @@ const FeatureSection = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-20 mx-auto bg-zinc-300 px-24 md:px-0">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-20 mx-auto bg-zinc-300 md:bg-black px-24 md:py-0 md:px-0">
       
       {features.map((feature, index) => (
         <Feature key={feature.title} {...feature} index={index} />
@@ -83,9 +83,9 @@ const  Feature = ({
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r  py-20 relative group/feature dark:border-neutral-800 bg-gradient-to-br from-black via-stone-950 to-black",
-        (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
-        index < 4 && "lg:border-b dark:border-neutral-800"
+        "flex flex-col lg:border-r  py-20 relative group/feature bg-gradient-to-br from-black via-stone-950 to-black",
+        (index === 0 || index === 4) && "lg:border-l",
+        index < 4 && "lg:border-b"
       )}
     >
       {index < 4 && (

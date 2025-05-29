@@ -4,7 +4,7 @@ import MagicButton from "./MagicButton";
 
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { WavyBackground } from "./ui/WavyBackground";
-import { ColourfulText } from './ui/ColorfulText';
+
 
 const GetStartedHero = () => {
   return (
@@ -12,23 +12,23 @@ const GetStartedHero = () => {
        <WavyBackground >
       
 
-      <div className="flex justify-center relative my-0 z-10 ">
-        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="uppercase tracking-widest text-2xl text-center text-zinc-400 max-w-150 pt-12">
+      <div className="flex justify-center relative z-10">
+        <div className=" flex flex-col items-center justify-center">
+          <p className="uppercase tracking-widest text-2xl text-center text-zinc-400 max-w-150 pt-12 md:text-xl">
             Instantly scale your scraping, marketing, and development workflows with real mobile IPs. It&apos;s not a noun it&apos;s a Verb. 
           </p>
           
           
-          <div className="pb-48">
+          <div className="pb-48 md:hidden">
           <TextGenerateEffect
             words="Privacy. Performance. Proxify!"
             className="text-center text-[40px] md:text-5xl lg:text-6xl "
           />
           </div>
-          <p className="py-4 pt-44 mt-4 text-2xl text-zinc-400">
+          {/* <p className="py-4 pt-44 mt-4 text-2xl text-zinc-400 md:text-lg">
           <ColourfulText text="ProxiFi! " /> 
            join Our Waitlist, Be The First To Get Our Fast & Secure Proxies. 
-          </p>  
+          </p>   */}
           {/* <div className="flex flex-wrap items-center justify-center gap-4 md:gap-16 max-lg:mt-10">
                       {companies.map((company) => (
                         <React.Fragment key={company.id}>
