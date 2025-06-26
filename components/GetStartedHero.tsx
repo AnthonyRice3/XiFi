@@ -52,7 +52,7 @@ const GetStartedHero = () => {
                         </React.Fragment>
                       ))}
                     </div> */}
-          <a href="/GetStarted" title='Get Started'>
+          <a href="/Contact" title='Get Started'>
             <MagicButton
               title="Join Waitlist"
               icon={<FaLocationArrow />}

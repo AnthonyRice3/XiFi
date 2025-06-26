@@ -1,37 +1,106 @@
 "use client";
 
 import React from "react";
-import { spreadsheet } from "../data/index";
 
 
 
 const Spreadsheet: React.FC = () => {
   return (
-    <div className=" mx-auto overflow-x-auto p-4 pb-24 ">
-      {/* <h1 className="text-amber-500 text-center p-4 text-4xl">Mobile Proxies</h1> */}
-      <table className="w-full overflow-hidden relative h-full rounded-2xl p-10 min-w-full border border-amber-500 table-fixed max-w-5xl">
-        <thead>
-          <tr className="bg-black">
-            <th className="p-4 border border-amber-500 text-left font-semibold text-md text-zinc-300">Feature</th>
-            <th className="p-4 border border-amber-500 text-center font-semibold text-md text-zinc-300">Free Plan</th>
-            <th className="p-4 border border-amber-500 text-center font-semibold text-md text-zinc-300">Personal Plan</th>
-            <th className="p-4 border border-amber-500 text-center font-semibold text-md text-zinc-300">Business Plan</th>
-            <th className="p-4 border border-amber-500 text-center font-semibold text-md text-zinc-300">Enterprise</th>
-          </tr>
+    
+
+<div className="relative overflow-x-auto md:mx-44 pb-8 bg-stone-950 shadow-md sm:rounded-lg">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
+            <tr className="text-amber-500">
+                <th scope="col" className="px-6 py-3 bg-stone-900">
+                    Feature
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Shared
+                </th>
+                <th scope="col" className="px-6 py-3 bg-stone-900">
+                    Designated
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Premium
+                </th>
+            </tr>
         </thead>
         <tbody>
-          {spreadsheet.map((row, index) => (
-            <tr key={index} className="odd:bg-zinc-950 even:bg-black text-zinc-300">
-              <td className="p-4 border border-amber-500 text-md">{row.feature}</td>
-              <td className="p-4 border border-amber-500 text-md text-center">{row.free}</td>
-              <td className="p-4 border border-amber-500 text-md text-center">{row.personal}</td>
-              <td className="p-4 border border-amber-500 text-md text-center">{row.business}</td>
-              <td className="p-4 border border-amber-500 text-md text-center">{row.enterprise}</td>
+            <tr className="border-b border-gray-200">
+                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap bg-stone-900 text-white">
+                    Apple MacBook Pro
+                </th>
+                <td className="px-6 py-4">
+                    Silver
+                </td>
+                <td className="px-6 py-4 bg-stone-900">
+                    Laptop
+                </td>
+                <td className="px-6 py-4">
+                    $2999
+                </td>
             </tr>
-          ))}
+            <tr className="border-b border-gray-200">
+                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap bg-stone-900 text-white">
+                    Microsoft Surface Pro
+                </th>
+                <td className="px-6 py-4">
+                    White
+                </td>
+                <td className="px-6 py-4 bg-stone-900">
+                    Laptop PC
+                </td>
+                <td className="px-6 py-4">
+                    $1999
+                </td>
+            </tr>
+            <tr className="border-b border-gray-200">
+                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap bg-stone-900 text-white">
+                    Magic Mouse 2
+                </th>
+                <td className="px-6 py-4">
+                    Black
+                </td>
+                <td className="px-6 py-4 bg-stone-900">
+                    Accessories
+                </td>
+                <td className="px-6 py-4">
+                    $99
+                </td>
+            </tr>
+            <tr className="border-b border-gray-200">
+                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap bg-stone-900 text-white">
+                    Google Pixel Phone
+                </th>
+                <td className="px-6 py-4">
+                    Gray
+                </td>
+                <td className="px-6 py-4 bg-stone-900">
+                    Phone
+                </td>
+                <td className="px-6 py-4">
+                    $799
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap bg-stone-900 text-white">
+                    Apple Watch 5
+                </th>
+                <td className="px-6 py-4">
+                    Red
+                </td>
+                <td className="px-6 py-4 bg-stone-900">
+                    Wearables
+                </td>
+                <td className="px-6 py-4">
+                    $999
+                </td>
+            </tr>
         </tbody>
-      </table>
-    </div>
+    </table>
+</div>
+
   );
 };
 
