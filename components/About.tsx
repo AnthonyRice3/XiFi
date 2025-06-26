@@ -30,7 +30,7 @@ export default function AboutUsSection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold leading-tight mb-4">
+          <h2 className="text-4xl font-bold leading-tight mb-4 text-amber-700">
             What is ProXiFI?
           </h2>
           <p className="text-lg text-stone-300 mb-6">
@@ -51,7 +51,7 @@ export default function AboutUsSection() {
           viewport={{ once: true }}
         >
           <Image
-            src="/5g.png"
+            src="/svgs/11.svg"
             alt="About us illustration"
             className="w-full max-w-md mx-auto"
             width={150}

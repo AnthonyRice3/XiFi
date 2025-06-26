@@ -1,8 +1,6 @@
 import AboutUsSection from "@/components/About";
 import { AboutHero } from "@/components/AboutHero";
 import GetStartedHero from "@/components/GetStartedHero";
-
-import UseCases from "@/components/UseCases";
 import WhyProxy from "@/components/WhyProxy";
 import { HomePriceCard } from "@/components/Works";
 
@@ -18,7 +16,7 @@ export default function Home() {
         
         <AboutHero />
         <WhyProxy />
-        <UseCases />
+        {/* <UseCases /> */}
       </main>
   );
 }

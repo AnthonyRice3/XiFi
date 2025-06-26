@@ -31,10 +31,6 @@ export function Nav() {
       name: "Contact",
       link: "/Contact",
     },
-    {
-      name: "Dash",
-      link: "/Dashboard",
-    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -68,7 +64,7 @@ export function Nav() {
                 <SignInButton />
               </SignedOut>
             </NavbarButton>
-            <NavbarButton href="" variant="primary">White Paper</NavbarButton>
+            <NavbarButton href="https://proxifi.gitbook.io/proxifi" variant="primary">White Paper</NavbarButton>
           </div>
         </NavBody>
 
@@ -103,26 +99,27 @@ export function Nav() {
                 className="w-full"
               >
                 <SignedIn>
-                                      <UserButton 
-                                        appearance={{
-                                    elements: {
-                                      formButtonPrimary: {
-                                        fontSize: 14,
-                                        textTransform: 'none',
-                                        backgroundColor: '#FFFFFF',
-                                        '&:hover, &:focus, &:active': {
-                                          backgroundColor: '#49247A',
-                                        },
-                                      },
-                                    },
-                                  }}
-                                      />
-                                    </SignedIn>
-                                    <SignedOut>
-                                      <SignInButton />
-                                    </SignedOut>
+                      <UserButton 
+                        appearance={{
+                        elements: {
+                        formButtonPrimary: {
+                        fontSize: 14,
+                        textTransform: 'none',
+                        backgroundColor: '#FFFFFF',
+                        '&:hover, &:focus, &:active': {
+                          backgroundColor: '#49247A',
+                        },
+                      },
+                    },
+                  }}
+                      />
+                    </SignedIn>
+                    <SignedOut>
+                      <SignInButton forceRedirectUrl="/Dashboard" />
+                    </SignedOut>
               </NavbarButton>
               <NavbarButton
+                href="https://proxifi.gitbook.io/proxifi"
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
