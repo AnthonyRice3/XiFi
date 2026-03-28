@@ -151,7 +151,7 @@ export default function BillingPage() {
           <IconCreditCard className="w-12 h-12 text-zinc-600" />
           <h2 className="text-zinc-300 font-semibold text-lg">No active subscription</h2>
           <p className="text-zinc-500 text-sm max-w-sm">
-            You don't have an active proxy subscription yet. Head to Plans to get started.
+            You don&apos;t have an active proxy subscription yet. Head to Plans to get started.
           </p>
           <a
             href="/Dashboard/Plans"

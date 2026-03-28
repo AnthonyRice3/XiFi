@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     const clerkUser = await currentUser();
     const email = clerkUser?.emailAddresses[0]?.emailAddress ?? "";
 
-    let user = await User.findOne({ clerkUserId: userId });
+    const user = await User.findOne({ clerkUserId: userId });
     let customerId = user?.stripeCustomerId;
 
     if (!customerId) {

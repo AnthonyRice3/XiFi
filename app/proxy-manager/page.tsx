@@ -6,7 +6,6 @@ import {
   IconDeviceMobile,
   IconRefresh,
   IconCode,
-  IconClock,
   IconServer,
   IconShield,
   IconWifi,
