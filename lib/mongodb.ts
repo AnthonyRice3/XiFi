@@ -12,7 +12,6 @@ interface Cached {
   promise: Promise<typeof mongoose> | null;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const globalWithMongoose = global as typeof globalThis & { mongoose?: Cached };
 
 const cached: Cached = globalWithMongoose.mongoose ?? { conn: null, promise: null };

@@ -6,7 +6,7 @@ import { User } from "@/lib/models/User";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
-export async function POST(_req: Request) {
+export async function POST() {
   try {
     const { userId } = await auth();
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
