@@ -1,6 +1,23 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export default clerkMiddleware();
+// Routes that Clerk should NOT protect (public / webhook)
+const isPublicRoute = createRouteMatcher([
+  '/',
+  '/sign-in(.*)',
+  '/sign-up(.*)',
+  '/AboutUs(.*)',
+  '/Proxies(.*)',
+  '/Contact(.*)',
+  '/GetStarted(.*)',
+  '/proxy-manager(.*)',
+  '/api/stripe/webhook',   // Stripe sends unauthenticated POST requests here
+]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (!isPublicRoute(req)) {
+    await auth.protect();
+  }
+});
 
 export const config = {
   matcher: [

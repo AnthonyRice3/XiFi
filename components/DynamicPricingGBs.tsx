@@ -1,100 +1,98 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
-import { pricing } from "../data/index";
+import { IconCheck, IconX } from "@tabler/icons-react";
 
-// Define the Plan interface to type your pricing data
-interface Plan {
-  name: string;
-  description: string;
-  maxEndpoints: number;
-  monthly: number | string;
-  yearly: number | string;
-  cta: string;
+const PLANS = [
+  { name: "Starter", monthly: 55, type: "Shared", users: "1\u20133", data: "5GB", apiAccess: false as boolean | "priority", planKey: "proxy_starter" },
+  { name: "Growth",  monthly: 70, type: "Shared", users: "1\u20132", data: "15GB", apiAccess: false as boolean | "priority", planKey: "proxy_growth" },
+  { name: "Standard", monthly: 90, type: "Dedicated", users: "1", data: "Unlimited", apiAccess: true as boolean | "priority", planKey: "proxy_standard" },
+  { name: "Premium",  monthly: 105, type: "Dedicated", users: "1", data: "Unlimited", apiAccess: "priority" as boolean | "priority", planKey: "proxy_premium" },
+];
+
+type DataTier = "5GB" | "15GB" | "Unlimited";
+const DATA_TIERS: DataTier[] = ["5GB", "15GB", "Unlimited"];
+
+const tierOrder: Record<DataTier, number> = { "5GB": 0, "15GB": 1, "Unlimited": 2 };
+function planTierOrder(data: string): number {
+  if (data === "5GB") return 0;
+  if (data === "15GB") return 1;
+  return 2;
 }
 
 export default function DynamicPricingGBs() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
-  const [endpoints, setEndpoints] = useState<number>(1);
+  const [selectedTier, setSelectedTier] = useState<DataTier>("5GB");
 
-  // Type the 'plan' parameter as Plan in filter callback
-  const displayPlans = pricing.filter((plan: Plan) =>
-    plan.name === "Enterprise" ? endpoints > 50 : endpoints <= plan.maxEndpoints
-  );
+  const displayPlans = PLANS.filter((p) => planTierOrder(p.data) >= tierOrder[selectedTier]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 min-h-[550px]">
-      <h1 className="text-center pb-8 text-xl text-zinc-600">Choose a package Based on GBs</h1>
-      <div className="flex justify-center gap-4 mb-6 bg-gradient-to-br from-black via-stone-950 to-black">
-        <button
-          onClick={() => setBillingCycle("monthly")}
-          className={`px-4 py-2 rounded-full border ${
-            billingCycle === "monthly"
-              ? "bg-amber-600 text-zinc-100 font-semibold"
-              : "bg-white text-black"
-          }`}
-        >
-          Shared
-        </button>
-        <button
-          onClick={() => setBillingCycle("yearly")}
-          className={`px-4 py-2 rounded-full border ${
-            billingCycle === "yearly"
-              ? "bg-amber-600 text-zinc-100 font-semibold"
-              : "bg-white text-black"
-          }`}
-        >
-          Dedicated
-        </button>
+      <h1 className="text-center pb-4 text-xl text-zinc-400">Choose a Package Based on Data</h1>
+      <p className="text-center text-sm text-zinc-600 mb-8">Select the minimum data you need — plans at or above that tier are shown.</p>
+
+      <div className="flex justify-center gap-3 mb-10">
+        {DATA_TIERS.map((tier) => (
+          <button
+            key={tier}
+            onClick={() => setSelectedTier(tier)}
+            className={`px-5 py-2 rounded-full border font-medium transition-colors ${
+              selectedTier === tier
+                ? "bg-amber-600 border-amber-600 text-white"
+                : "bg-transparent border-zinc-700 text-zinc-400 hover:border-amber-500 hover:text-white"
+            }`}
+          >
+            {tier}
+          </button>
+        ))}
       </div>
 
-      <div className="text-center mb-4">
-        <h2 className="text-lg font-medium mb-2 text-white">How many GBs do you need?</h2>
-        <label htmlFor="endpoint-slider" className="sr-only">
-          Select number of GBs
-        </label>
-        <input
-          id="endpoint-slider"
-          type="range"
-          min={1}
-          max={100}
-          color="#FDE68A"
-          value={endpoints}
-          onChange={(e) => setEndpoints(Number(e.target.value))}
-          className="w-full"
-        />
-        <div className="mt-1 text-sm text-amber-400">GBs: {endpoints}</div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-        {/* Also type 'plan' in map */}
-        {displayPlans.map((plan: Plan) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {displayPlans.map((plan) => (
           <div
             key={plan.name}
-            className="border border-amber-500 rounded-2xl p-6 text-white flex flex-col bg-gradient-to-br from-black via-stone-950 to-black"
+            className="border border-amber-500/40 rounded-2xl p-6 text-white flex flex-col bg-gradient-to-br from-black via-stone-950 to-black"
           >
-            <h3 className="text-xl font-semibold mb-1">{plan.name}</h3>
-            <p className="text-sm text-amber-400 mb-4">{plan.description}</p>
+            <span
+              className={`text-xs font-semibold uppercase tracking-wide mb-3 px-2 py-1 rounded-full w-fit ${
+                plan.type === "Shared"
+                  ? "bg-zinc-800 text-zinc-300"
+                  : "bg-amber-900/60 text-amber-300"
+              }`}
+            >
+              {plan.type}
+            </span>
+            <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
+            <p className="text-3xl font-extrabold text-amber-400 mt-2 mb-1">
+              ${plan.monthly}
+              <span className="text-sm font-medium text-zinc-400"> /mo</span>
+            </p>
 
-            {typeof plan[billingCycle] === "number" ? (
-              <p className="text-2xl font-bold mb-2">
-                ${plan[billingCycle]}{" "}
-                <span className="text-sm font-medium text-amber-400">
-                  / {billingCycle === "monthly" ? "month" : "year"}
-                </span>
-              </p>
-            ) : (
-              <p className="text-xl font-bold mb-2">Contact Us</p>
-            )}
+            <div className="mt-4 space-y-2 text-sm text-zinc-300">
+              <div className="flex justify-between">
+                <span>Data</span>
+                <span className="font-semibold text-white">{plan.data}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Users</span>
+                <span className="font-semibold text-white">{plan.users}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>API Access</span>
+                {plan.apiAccess === "priority" ? (
+                  <span className="text-amber-400 font-semibold text-xs">Priority</span>
+                ) : plan.apiAccess ? (
+                  <IconCheck size={16} className="text-amber-400" />
+                ) : (
+                  <IconX size={16} className="text-zinc-600" />
+                )}
+              </div>
+            </div>
 
             <button
               type="button"
-              className="mt-auto w-full bg-white text-black font-medium py-2 rounded-xl hover:bg-amber-200"
-              onClick={() => {
-                console.log(`${plan.name} selected`);
-              }}
+              className="mt-6 w-full bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 rounded-xl transition-colors"
             >
-              {plan.cta}
+              {plan.planKey === "proxy_starter" || plan.planKey === "proxy_growth" ? "Get Started" : "Get Started"}
             </button>
           </div>
         ))}

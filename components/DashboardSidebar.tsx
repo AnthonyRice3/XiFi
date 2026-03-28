@@ -7,6 +7,8 @@ import {
   IconCreditCard,
   IconFileDescription,
   IconUserBolt,
+  IconWallet,
+  IconTerminal2,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -30,6 +32,16 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
       label: "Plans",
       href: "/Dashboard/Plans",
       icon: <IconCreditCard className="..." />,
+    },
+    {
+      label: "Software",
+      href: "/Dashboard/Software",
+      icon: <IconTerminal2 className="..." />,
+    },
+    {
+      label: "Billing",
+      href: "/Dashboard/Billing",
+      icon: <IconWallet className="..." />,
     },
     {
       label: "Docs",

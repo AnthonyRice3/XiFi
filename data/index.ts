@@ -502,46 +502,66 @@ export const navItems = [
   ];
 
   export const pricing = [
-      {
-        "name": "Free",
-        "description": "No credit card needed.",
-        "monthly": 0,
-        "yearly": 0,
-        "maxEndpoints": 5,
-        "cta": "Start for Free"
-      },
-      {
-        "name": "Personal",
-        "description": "For enthusiasts & hobbyists",
-        "monthly": 9,
-        "yearly": 7.2,
-        "maxEndpoints": 1,
-        "cta": "Buy Now"
-      },
-      {
-        "name": "Business",
-        "description": "For small-medium businesses",
-        "monthly": 99,
-        "yearly": 79.2,
-        "maxEndpoints": 5,
-        "cta": "Buy Now"
-      },
-      {
-        "name": "Enterprise",
-        "description": "For enterprises or governments",
-        "monthly": "Contact",
-        "yearly": "Contact",
-        "maxEndpoints": 80,
-        "cta": "Contact Us"
-      }
-    ];
+    {
+      name: "Starter",
+      description: "Perfect for small teams getting started with mobile proxies.",
+      monthly: 55,
+      type: "Shared",
+      users: "1–3",
+      maxUsers: 3,
+      data: "5GB",
+      apiAccess: false as boolean | "priority",
+      planKey: "proxy_starter",
+      cta: "Get Started",
+    },
+    {
+      name: "Growth",
+      description: "More data and flexibility for growing operations.",
+      monthly: 70,
+      type: "Shared",
+      users: "1–2",
+      maxUsers: 2,
+      data: "15GB",
+      apiAccess: false as boolean | "priority",
+      planKey: "proxy_growth",
+      cta: "Get Started",
+    },
+    {
+      name: "Standard",
+      description: "Dedicated mobile proxy with full API access.",
+      monthly: 90,
+      type: "Dedicated",
+      users: "1",
+      maxUsers: 1,
+      data: "Unlimited",
+      apiAccess: true as boolean | "priority",
+      planKey: "proxy_standard",
+      cta: "Get Started",
+    },
+    {
+      name: "Premium",
+      description: "Top-tier dedicated proxy with priority API and support.",
+      monthly: 105,
+      type: "Dedicated",
+      users: "1",
+      maxUsers: 1,
+      data: "Unlimited",
+      apiAccess: "priority" as boolean | "priority",
+      planKey: "proxy_premium",
+      cta: "Get Started",
+    },
+  ];
 
-    export type Plan = {
-      name: string;
-      description: string;
-      monthly: number | string;
-      yearly: number | string;
-      maxEndpoints: number;
-      cta: string;
-    };
+  export type Plan = {
+    name: string;
+    description: string;
+    monthly: number;
+    type: "Shared" | "Dedicated";
+    users: string;
+    maxUsers: number;
+    data: string;
+    apiAccess: boolean | "priority";
+    planKey: string;
+    cta: string;
+  };
   

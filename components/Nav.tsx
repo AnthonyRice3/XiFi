@@ -24,6 +24,14 @@ export function Nav() {
       link: "/Proxies",
     },
     {
+      name: "Software",
+      link: "/Software",
+    },
+    {
+      name: "Proxy Manager",
+      link: "/proxy-manager",
+    },
+    {
       name: "About",
       link: "/AboutUs",
     },
