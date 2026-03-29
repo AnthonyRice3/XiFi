@@ -21,7 +21,7 @@ export async function PATCH(
   const user = await User.findOneAndUpdate(
     { clerkUserId: userId },
     { role },
-    { new: true }
+    { returnDocument: "after" }
   ).lean();
 
   if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });

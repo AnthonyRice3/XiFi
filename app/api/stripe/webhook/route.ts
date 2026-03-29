@@ -52,7 +52,7 @@ export async function POST(req: Request) {
               activatedAt: new Date(),
               downloadToken: crypto.randomBytes(32).toString("hex"),
             },
-            { upsert: true, new: true }
+            { upsert: true, returnDocument: "after" }
           );
           // Send purchase email
           try {
@@ -126,7 +126,7 @@ export async function POST(req: Request) {
             cancelAtPeriodEnd: sub.cancel_at_period_end,
             downloadToken: crypto.randomBytes(32).toString("hex"),
           },
-          { upsert: true, new: true }
+          { upsert: true, returnDocument: "after" }
         );
         break;
       }
@@ -165,7 +165,7 @@ export async function POST(req: Request) {
           currentPeriodEnd: new Date(subAny.current_period_end * 1_000),
           cancelAtPeriodEnd: sub.cancel_at_period_end,
         },
-        { upsert: true, new: true }
+        { upsert: true, returnDocument: "after" }
       );
       try {
         const existingCount = await Proxy.countDocuments({ clerkUserId });

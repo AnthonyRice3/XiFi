@@ -23,7 +23,7 @@ export async function PATCH(
   const entry = await Waitlist.findByIdAndUpdate(
     id,
     { status, ...(status === "invited" ? { invitedAt: new Date() } : {}) },
-    { new: true }
+    { returnDocument: "after" }
   );
 
   if (!entry) return NextResponse.json({ error: "Not found" }, { status: 404 });

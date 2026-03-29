@@ -21,9 +21,13 @@ export async function connectDB(): Promise<typeof mongoose> {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
+    const uri = MONGODB_URI.trim(); // guard against copy-paste whitespace in env var
+    cached.promise = mongoose.connect(uri, {
       bufferCommands: false,
       dbName: "application",
+      serverSelectionTimeoutMS: 10000, // fail fast in serverless (default 30s)
+      connectTimeoutMS: 10000,
+      socketTimeoutMS: 30000,
     });
   }
 
