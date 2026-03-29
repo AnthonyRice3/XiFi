@@ -57,7 +57,7 @@ export function Nav() {
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">
               <SignedIn>
-                <UserButton />
+                <UserButton appearance={{ variables: { colorPrimary: '#f59e0b' }, elements: { avatarBox: 'ring-2 ring-amber-500/50 rounded-full' } }} />
               </SignedIn>
               <SignedOut>
                 <SignInButton />
@@ -103,7 +103,7 @@ export function Nav() {
                 className="w-full"
               >
                 <SignedIn>
-                      <UserButton />
+                      <UserButton appearance={{ variables: { colorPrimary: '#f59e0b' }, elements: { avatarBox: 'ring-2 ring-amber-500/50 rounded-full' } }} />
                     </SignedIn>
                     <SignedOut>
                       <SignInButton forceRedirectUrl="/Dashboard" />

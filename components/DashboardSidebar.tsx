@@ -100,7 +100,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
                 label: email,
                 href: "#",
                 icon: (
-                  <UserButton />
+                  <UserButton appearance={{ variables: { colorPrimary: '#f59e0b' }, elements: { avatarBox: 'ring-2 ring-amber-500/50 rounded-full' } }} />
                 ),
               }}
             />

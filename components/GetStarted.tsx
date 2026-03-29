@@ -119,7 +119,7 @@ const Navbar = () => {
       </div>
       <div className="flex justify-end items-center gap-4 p-4">
                     <SignedIn>
-                      <UserButton />
+                      <UserButton appearance={{ variables: { colorPrimary: '#f59e0b' }, elements: { avatarBox: 'ring-2 ring-amber-500/50 rounded-full' } }} />
                     </SignedIn>
                     <SignedOut>
                       <SignInButton />

@@ -11,7 +11,7 @@ const page = () => {
             <PriceHero />
             <WaitlistSection />
             <FaqSection />
-            <Form />
+            {/* <Form /> */}
             
             
         </div>
