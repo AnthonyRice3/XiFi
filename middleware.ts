@@ -12,6 +12,7 @@ const isPublicRoute = createRouteMatcher([
   '/proxy-manager(.*)',
   '/Docs(.*)',
   '/api/stripe/webhook',   // Stripe sends unauthenticated POST requests here
+  '/api/clerk/webhook',     // Clerk sends unauthenticated POST requests here
   '/api/waitlist',          // Public waitlist sign-up
 ]);
 
