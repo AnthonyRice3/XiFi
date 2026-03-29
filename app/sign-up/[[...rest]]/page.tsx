@@ -1,4 +1,4 @@
-import { SignIn } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs";
 
 const appearance = {
           layout: {
@@ -33,7 +33,7 @@ const appearance = {
           }
 } as const;
 
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <main className="min-h-screen bg-black flex flex-col items-center justify-center px-4 py-16">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -46,10 +46,10 @@ export default function SignInPage() {
         <h1 className="text-4xl font-extrabold text-white tracking-tight">
           ProX<span className="text-amber-400">iFi</span>
         </h1>
-        <p className="text-zinc-500 text-sm mt-2">Sign in to your account</p>
+        <p className="text-zinc-500 text-sm mt-2">Create your free account</p>
       </div>
       <div className="relative z-10">
-        <SignIn routing="hash" appearance={appearance} />
+        <SignUp routing="hash" appearance={appearance} />
       </div>
       <p className="relative z-10 mt-8 text-xs text-zinc-700">
         &copy; {new Date().getFullYear()} ProXiFi. All rights reserved.

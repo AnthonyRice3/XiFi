@@ -5,7 +5,10 @@ import { connectDB } from "@/lib/mongodb";
 import { Subscription } from "@/lib/models/Subscription";
 import { Proxy } from "@/lib/models/Proxy";
 import { SoftwareLicense } from "@/lib/models/SoftwareLicense";
+import { User } from "@/lib/models/User";
 import { provisionProxy, deprovisionProxy } from "@/lib/proxyManager";
+import { resend, FROM_EMAIL } from "@/lib/resend";
+import { purchaseConfirmationHtml, purchaseConfirmationText } from "@/lib/emails/purchase-confirmation";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
@@ -31,24 +34,69 @@ export async function POST(req: Request) {
     // ── Checkout completed (lifetime software purchase) ──────────────────────
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
-      if (session.metadata?.productType !== "software") break;
-      if (session.metadata?.billingCycle !== "lifetime") break;
-      const clerkUserId = session.metadata.clerkUserId;
-      const plan = session.metadata.plan as "basic" | "premium" | "business";
-      if (!clerkUserId || !plan) break;
-      await SoftwareLicense.findOneAndUpdate(
-        { clerkUserId, plan, billingCycle: "lifetime" },
-        {
-          clerkUserId,
-          plan,
-          billingCycle: "lifetime",
-          status: "active",
-          stripeCustomerId: session.customer as string,
-          activatedAt: new Date(),
-          downloadToken: crypto.randomBytes(32).toString("hex"),
-        },
-        { upsert: true, new: true }
-      );
+      const sessionClerkUserId = session.metadata?.clerkUserId;
+      const sessionProductType = session.metadata?.productType;
+
+      // ── Lifetime software ──
+      if (sessionProductType === "software" && session.metadata?.billingCycle === "lifetime") {
+        const plan = session.metadata.plan as "basic" | "premium" | "business";
+        if (sessionClerkUserId && plan) {
+          await SoftwareLicense.findOneAndUpdate(
+            { clerkUserId: sessionClerkUserId, plan, billingCycle: "lifetime" },
+            {
+              clerkUserId: sessionClerkUserId,
+              plan,
+              billingCycle: "lifetime",
+              status: "active",
+              stripeCustomerId: session.customer as string,
+              activatedAt: new Date(),
+              downloadToken: crypto.randomBytes(32).toString("hex"),
+            },
+            { upsert: true, new: true }
+          );
+          // Send purchase email
+          try {
+            const userDoc = await User.findOne({ clerkUserId: sessionClerkUserId }).lean();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const userEmail = (userDoc as any)?.email;
+            if (userEmail) {
+              const planPrices: Record<string, number> = { basic: 97, premium: 197, business: 397 };
+              await resend.emails.send({
+                from: FROM_EMAIL,
+                to: userEmail,
+                subject: "Your ProXiFi Software Purchase — Order Confirmed",
+                html: purchaseConfirmationHtml({ email: userEmail, name: userEmail, product: { type: "software", plan, billing: "lifetime", price: planPrices[plan] ?? 97 } }),
+                text: purchaseConfirmationText({ name: userEmail, product: { type: "software", plan, billing: "lifetime", price: planPrices[plan] ?? 97 } }),
+              });
+            }
+          } catch (emailErr) {
+            console.error("[webhook] software lifetime email failed:", emailErr);
+          }
+        }
+        break;
+      }
+
+      // ── Proxy Manager one-time purchase ──
+      if (sessionProductType === "proxy_manager_software" && sessionClerkUserId) {
+        try {
+          const userDoc = await User.findOne({ clerkUserId: sessionClerkUserId }).lean();
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const userEmail = (userDoc as any)?.email;
+          if (userEmail) {
+            await resend.emails.send({
+              from: FROM_EMAIL,
+              to: userEmail,
+              subject: "Your ProXiFi Proxy Manager Purchase — Order Confirmed",
+              html: purchaseConfirmationHtml({ email: userEmail, name: userEmail, product: { type: "proxy_manager", price: 1500 } }),
+              text: purchaseConfirmationText({ name: userEmail, product: { type: "proxy_manager", price: 1500 } }),
+            });
+          }
+        } catch (emailErr) {
+          console.error("[webhook] proxy manager email failed:", emailErr);
+        }
+        break;
+      }
+
       break;
     }
 
@@ -83,7 +131,26 @@ export async function POST(req: Request) {
         break;
       }
 
-      // Proxy subscription
+      // Proxy subscription — send confirmation email
+      try {
+        const userDoc = await User.findOne({ clerkUserId }).lean();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const userEmail = (userDoc as any)?.email;
+        if (userEmail) {
+          const proxyPlan = (sub.metadata?.plan ?? "starter") as string;
+          const planPrices: Record<string, number> = { starter: 55, growth: 70, standard: 90, premium: 105 };
+          await resend.emails.send({
+            from: FROM_EMAIL,
+            to: userEmail,
+            subject: "Your ProXiFi Proxy Plan — Subscription Confirmed",
+            html: purchaseConfirmationHtml({ email: userEmail, name: userEmail, product: { type: "proxy", plan: proxyPlan, price: planPrices[proxyPlan] ?? 55 } }),
+            text: purchaseConfirmationText({ name: userEmail, product: { type: "proxy", plan: proxyPlan, price: planPrices[proxyPlan] ?? 55 } }),
+          });
+        }
+      } catch (emailErr) {
+        console.error("[webhook] proxy subscription email failed:", emailErr);
+      }
+
       const plan = (sub.metadata?.plan ?? "shared_mobile") as "shared_mobile" | "dedicated_mobile";
       await Subscription.findOneAndUpdate(
         { stripeSubscriptionId: sub.id },

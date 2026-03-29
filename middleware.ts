@@ -10,7 +10,9 @@ const isPublicRoute = createRouteMatcher([
   '/Contact(.*)',
   '/GetStarted(.*)',
   '/proxy-manager(.*)',
+  '/Docs(.*)',
   '/api/stripe/webhook',   // Stripe sends unauthenticated POST requests here
+  '/api/waitlist',          // Public waitlist sign-up
 ]);
 
 export default clerkMiddleware(async (auth, req) => {

@@ -32,6 +32,10 @@ export function Nav() {
       link: "/proxy-manager",
     },
     {
+      name: "Docs",
+      link: "/Docs",
+    },
+    {
       name: "About",
       link: "/AboutUs",
     },
@@ -72,7 +76,7 @@ export function Nav() {
                 <SignInButton />
               </SignedOut>
             </NavbarButton>
-            <NavbarButton href="https://proxifi.gitbook.io/proxifi" variant="primary">White Paper</NavbarButton>
+            <NavbarButton href="/sign-up" variant="primary">Sign Up</NavbarButton>
           </div>
         </NavBody>
 
@@ -127,12 +131,12 @@ export function Nav() {
                     </SignedOut>
               </NavbarButton>
               <NavbarButton
-                href="https://proxifi.gitbook.io/proxifi"
+                href="/sign-up"
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
               >
-                White Paper
+                Sign Up
               </NavbarButton>
             </div>
           </MobileNavMenu>

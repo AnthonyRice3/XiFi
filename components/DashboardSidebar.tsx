@@ -9,6 +9,8 @@ import {
   IconUserBolt,
   IconWallet,
   IconTerminal2,
+  IconLifebuoy,
+  IconShield,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -44,9 +46,19 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
       icon: <IconWallet className="..." />,
     },
     {
+      label: "Support",
+      href: "/Dashboard/Support",
+      icon: <IconLifebuoy className="..." />,
+    },
+    {
       label: "Docs",
-      href: "",
+      href: "/Docs",
       icon: <IconFileDescription className="..." />,
+    },
+    {
+      label: "Admin Panel",
+      href: "/admin",
+      icon: <IconShield className="..." />,
     },
   ];
  

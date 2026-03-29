@@ -30,6 +30,7 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-lottie": "^1.2.10",
+    "resend": "^6.9.4",
     "simplex-noise": "^4.0.3",
     "stripe": "^20.4.1",
     "tailwind-merge": "^3.3.0",
