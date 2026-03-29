@@ -171,7 +171,7 @@ function WhatIsProXiFi() {
         multi-user access, and exposes a REST API — turning any device rack into a production proxy operation
         with no per-device configuration.
       </P>
-      <SubHeading>Who It's For</SubHeading>
+      <SubHeading>Who It&apos;s For</SubHeading>
       <Ul items={[
         "Performance marketers running accounts across ad platforms",
         "E-commerce operators managing inventory bots and price scrapers",
@@ -397,7 +397,7 @@ function Technicals() {
     <>
       <SectionHeading>The Technicals</SectionHeading>
       <P>
-        ProXiFi's technical architecture is built on three pillars: real mobile hardware, a proxy
+        ProXiFi&apos;s technical architecture is built on three pillars: real mobile hardware, a proxy
         orchestration layer, and a management control plane. Each layer is designed for reliability,
         horizontal scalability, and security-by-default.
       </P>
@@ -410,7 +410,7 @@ function Technicals() {
       <SubHeading>Proxy Layer</SubHeading>
       <P>
         Each connected device is assigned sequential HTTP (port 10000+) and SOCKS5 (port 20000+) proxy
-        endpoints. Traffic is routed through the device's cellular interface using OS-level network
+        endpoints. Traffic is routed through the device&apos;s cellular interface using OS-level network
         namespace isolation, ensuring no cross-device traffic leakage.
       </P>
       <SubHeading>Control Plane</SubHeading>
@@ -518,8 +518,8 @@ function Security() {
       <SubHeading>Payment Compliance</SubHeading>
       <P>
         All payment processing is delegated to Stripe, a PCI-DSS Level 1 certified payment processor.
-        ProXiFi's Stripe integration uses Stripe Checkout (hosted payment page) to ensure cardholder
-        data never touches ProXiFi servers. Webhook authenticity is verified via Stripe's HMAC
+        ProXiFi&apos;s Stripe integration uses Stripe Checkout (hosted payment page) to ensure cardholder
+        data never touches ProXiFi servers. Webhook authenticity is verified via Stripe&apos;s HMAC
         signature before processing any event.
       </P>
       <SubHeading>Access Control</SubHeading>
@@ -560,7 +560,7 @@ function SLA() {
       <SubHeading>Exclusions</SubHeading>
       <P>
         SLA commitments do not apply to downtime caused by: scheduled maintenance (announced 48 hours in
-        advance), carrier network outages outside ProXiFi's control, force majeure events, or customer
+        advance), carrier network outages outside ProXiFi&apos;s control, force majeure events, or customer
         misconfiguration.
       </P>
       <SubHeading>Credits</SubHeading>
@@ -738,7 +738,7 @@ function TermsOfService() {
       </P>
       <SubHeading>4. Service Availability</SubHeading>
       <P>
-        ProXiFi provides the service on an "as is" basis. We do not guarantee uninterrupted or
+        ProXiFi provides the service on an &ldquo;as is&rdquo; basis. We do not guarantee uninterrupted or
         error-free service. SLA credits, where applicable, represent the sole remedy for downtime.
       </P>
       <SubHeading>5. Termination</SubHeading>
@@ -749,7 +749,7 @@ function TermsOfService() {
       </P>
       <SubHeading>6. Limitation of Liability</SubHeading>
       <P>
-        To the maximum extent permitted by law, ProXiFi's total liability for any claim arising
+        To the maximum extent permitted by law, ProXiFi&apos;s total liability for any claim arising
         from use of the service shall not exceed the amount paid by you in the 30 days preceding
         the claim. ProXiFi is not liable for indirect, incidental, or consequential damages.
       </P>

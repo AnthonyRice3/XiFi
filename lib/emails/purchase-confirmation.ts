@@ -4,7 +4,8 @@ export type PurchaseProduct =
   | { type: "proxy_manager"; price: number };
 
 export function purchaseConfirmationHtml({
-  email,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  email: _email,
   name,
   product,
 }: {
