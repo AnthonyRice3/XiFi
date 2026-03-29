@@ -76,7 +76,12 @@ export function Nav() {
                 <SignInButton />
               </SignedOut>
             </NavbarButton>
-            <NavbarButton href="/sign-up" variant="primary">Sign Up</NavbarButton>
+            <SignedIn>
+              <NavbarButton href="/Dashboard" variant="primary">Dashboard</NavbarButton>
+            </SignedIn>
+            <SignedOut>
+              <NavbarButton href="/sign-up" variant="primary">Sign Up</NavbarButton>
+            </SignedOut>
           </div>
         </NavBody>
 
@@ -130,14 +135,26 @@ export function Nav() {
                       <SignInButton forceRedirectUrl="/Dashboard" />
                     </SignedOut>
               </NavbarButton>
-              <NavbarButton
-                href="/sign-up"
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Sign Up
-              </NavbarButton>
+              <SignedIn>
+                <NavbarButton
+                  href="/Dashboard"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Dashboard
+                </NavbarButton>
+              </SignedIn>
+              <SignedOut>
+                <NavbarButton
+                  href="/sign-up"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Sign Up
+                </NavbarButton>
+              </SignedOut>
             </div>
           </MobileNavMenu>
         </MobileNav>

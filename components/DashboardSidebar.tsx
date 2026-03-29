@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/SidebarItems";
 import {
   IconBrandTabler,
@@ -19,6 +19,21 @@ import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 
 export function DashboardSidebar({ children }: { children: React.ReactNode }) {
+  const [role, setRole] = useState<string>("user");
+  const [email, setEmail] = useState<string>("...");
+
+  useEffect(() => {
+    fetch("/api/user/me")
+      .then((r) => r.json())
+      .then((d) => {
+        setRole(d.role ?? "user");
+        setEmail(d.email ?? "My Account");
+      })
+      .catch(() => {});
+  }, []);
+
+  const isAdmin = role === "admin" || role === "moderator";
+
   const links = [
     {
       label: "Dashboard",
@@ -55,11 +70,11 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
       href: "/Docs",
       icon: <IconFileDescription className="..." />,
     },
-    {
+    ...(isAdmin ? [{
       label: "Admin Panel",
-      href: "/admin",
+      href: "/Admin",
       icon: <IconShield className="..." />,
-    },
+    }] : []),
   ];
  
   const [open, setOpen] = useState(false);
@@ -82,7 +97,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
+                label: email,
                 href: "#",
                 icon: (
                   <UserButton 
