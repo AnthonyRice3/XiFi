@@ -72,7 +72,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
     },
     ...(isAdmin ? [{
       label: "Admin Panel",
-      href: "/Admin",
+      href: "/admin",
       icon: <IconShield className="..." />,
     }] : []),
   ];
@@ -100,20 +100,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
                 label: email,
                 href: "#",
                 icon: (
-                  <UserButton 
-                  appearance={{
-                    elements: {
-                      formButtonPrimary: {
-                        fontSize: 14,
-                        textTransform: 'none',
-                        backgroundColor: '#FFFFFF',
-                        '&:hover, &:focus, &:active': {
-                          backgroundColor: '#49247A',
-                        },
-                      },
-                    },
-                  }}
-                />
+                  <UserButton />
                 ),
               }}
             />

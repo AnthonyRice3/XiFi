@@ -119,20 +119,7 @@ const Navbar = () => {
       </div>
       <div className="flex justify-end items-center gap-4 p-4">
                     <SignedIn>
-                      <UserButton 
-                        appearance={{
-                    elements: {
-                      formButtonPrimary: {
-                        fontSize: 14,
-                        textTransform: 'none',
-                        backgroundColor: '#FFFFFF',
-                        '&:hover, &:focus, &:active': {
-                          backgroundColor: '#49247A',
-                        },
-                      },
-                    },
-                  }}
-                      />
+                      <UserButton />
                     </SignedIn>
                     <SignedOut>
                       <SignInButton />

@@ -5,7 +5,7 @@ import {
   IconUsers, IconTicket, IconChartBar, IconRefresh,
   IconCircleCheck, IconClock, IconAlertTriangle, IconX,
   IconChevronDown, IconChevronUp, IconSend, IconShield,
-  IconCreditCard, IconLoader2, IconMailFast,
+  IconCreditCard, IconLoader2, IconMailFast, IconCurrencyDollar, IconCalendarEvent,
 } from "@tabler/icons-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -17,6 +17,35 @@ interface Stats {
   waitlist: { total: number; pending: number; invited: number; converted: number };
   recentUsers: UserRecord[];
   recentTickets: TicketRecord[];
+}
+
+interface RevenueData {
+  mrr: number;
+  allTimeRevenue: number;
+  activeProxySubscriptions: number;
+  activeSoftwareLicenses: number;
+  planBreakdown: { label: string; count: number; mrrCents: number }[];
+  recentCharges: {
+    id: string;
+    amount: number;
+    currency: string;
+    status: string;
+    description: string | null;
+    email: string | null;
+    created: number;
+  }[];
+}
+
+interface DemoBooking {
+  _id: string;
+  name: string;
+  email: string;
+  company?: string;
+  interest?: string;
+  message?: string;
+  status: "pending" | "scheduled" | "completed" | "cancelled";
+  scheduledAt?: string;
+  createdAt: string;
 }
 
 interface WaitlistEntry {
@@ -95,7 +124,11 @@ function fmt(d: string) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function AdminPage() {
-  const [tab, setTab] = useState<"overview" | "users" | "tickets" | "waitlist">("overview");
+  const [tab, setTab] = useState<"overview" | "users" | "tickets" | "waitlist" | "revenue" | "demos">("overview");
+  const [demos, setDemos] = useState<DemoBooking[]>([]);
+  const [demoStatusUpdating, setDemoStatusUpdating] = useState<string | null>(null);
+  const [revenue, setRevenue] = useState<RevenueData | null>(null);
+  const [revenueLoading, setRevenueLoading] = useState(false);
   const [stats, setStats] = useState<Stats | null>(null);
   const [users, setUsers] = useState<UserRecord[]>([]);
   const [tickets, setTickets] = useState<TicketRecord[]>([]);
@@ -116,11 +149,12 @@ export default function AdminPage() {
     setLoading(true);
     setError(null);
     try {
-      const [statsRes, usersRes, ticketsRes, waitlistRes] = await Promise.all([
+      const [statsRes, usersRes, ticketsRes, waitlistRes, demosRes] = await Promise.all([
         fetch("/api/admin/stats"),
         fetch("/api/admin/users"),
         fetch("/api/admin/tickets"),
         fetch("/api/waitlist"),
+        fetch("/api/demo"),
       ]);
       if (!statsRes.ok || !usersRes.ok || !ticketsRes.ok || !waitlistRes.ok) {
         throw new Error("Access denied or server error");
@@ -130,6 +164,10 @@ export default function AdminPage() {
       setUsers(u.users);
       setTickets(t.tickets);
       setWaitlist(w.entries ?? []);
+      if (demosRes.ok) {
+        const d = await demosRes.json();
+        setDemos(d.bookings ?? []);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load");
     } finally {
@@ -172,6 +210,25 @@ export default function AdminPage() {
     });
     setRoleUpdating(null);
     await loadAll();
+  }
+
+  async function loadRevenue() {
+    if (revenue) return; // already loaded
+    setRevenueLoading(true);
+    try {
+      const res = await fetch("/api/admin/revenue");
+      if (res.ok) setRevenue(await res.json());
+    } catch { /* silent */ } finally {
+      setRevenueLoading(false);
+    }
+  }
+
+  function fmtMoney(cents: number) {
+    return "$" + (cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function fmtDate(unix: number) {
+    return new Date(unix * 1000).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   }
 
   const filteredTickets = ticketFilter === "all"
@@ -239,26 +296,34 @@ export default function AdminPage() {
       {/* Tabs */}
       <div className="border-b border-zinc-800 px-8">
         <div className="flex gap-1">
-          {(["overview","users","tickets","waitlist"] as const).map((t) => (
+          {(["overview","users","tickets","waitlist","revenue","demos"] as const).map((t) => (
             <button
               key={t}
-              onClick={() => setTab(t)}
+              onClick={() => { setTab(t); if (t === "revenue") loadRevenue(); }}
               className={`px-5 py-3.5 text-sm font-medium capitalize transition-colors border-b-2 -mb-px ${
                 tab === t
                   ? "border-amber-500 text-white"
                   : "border-transparent text-zinc-500 hover:text-zinc-300"
               }`}
             >
-              {t === "overview"  && <IconChartBar  className="inline mr-1.5 -mt-0.5" size={14} />}
-              {t === "users"     && <IconUsers     className="inline mr-1.5 -mt-0.5" size={14} />}
-              {t === "tickets"   && <IconTicket    className="inline mr-1.5 -mt-0.5" size={14} />}
-              {t === "waitlist"  && <IconMailFast  className="inline mr-1.5 -mt-0.5" size={14} />}
+              {t === "overview"  && <IconChartBar         className="inline mr-1.5 -mt-0.5" size={14} />}
+              {t === "users"     && <IconUsers            className="inline mr-1.5 -mt-0.5" size={14} />}
+              {t === "tickets"   && <IconTicket           className="inline mr-1.5 -mt-0.5" size={14} />}
+              {t === "waitlist"  && <IconMailFast         className="inline mr-1.5 -mt-0.5" size={14} />}
+              {t === "revenue"   && <IconCurrencyDollar   className="inline mr-1.5 -mt-0.5" size={14} />}
+              {t === "demos"     && <IconCalendarEvent     className="inline mr-1.5 -mt-0.5" size={14} />}
               {t}
               {t === "tickets" && stats && stats.tickets.open > 0 && (
                 <span className="ml-2 bg-red-600 text-white text-xs rounded-full px-1.5 py-0.5">{stats.tickets.open}</span>
               )}
               {t === "waitlist" && (stats?.waitlist?.pending ?? 0) > 0 && (
                 <span className="ml-2 bg-amber-600 text-white text-xs rounded-full px-1.5 py-0.5">{stats?.waitlist?.pending}</span>
+              )}
+              {t === "revenue" && tab !== "revenue" && (
+                <span className="ml-1 text-zinc-600 text-xs">Stripe</span>
+              )}
+              {t === "demos" && demos.filter(d => d.status === "pending").length > 0 && (
+                <span className="ml-2 bg-amber-600 text-white text-xs rounded-full px-1.5 py-0.5">{demos.filter(d => d.status === "pending").length}</span>
               )}
             </button>
           ))}
@@ -586,6 +651,197 @@ export default function AdminPage() {
                 </div>
               )}
             </div>
+          </div>
+        )}
+
+        {/* ── REVENUE ───────────────────────────────────────────────── */}
+        {tab === "revenue" && (
+          <div className="space-y-6">
+            {revenueLoading || !revenue ? (
+              <div className="flex items-center justify-center py-20 gap-3 text-zinc-400">
+                <IconLoader2 className="animate-spin" size={20} /> Loading Stripe data...
+              </div>
+            ) : (
+              <>
+                {/* Top stat cards */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {[
+                    { label: "MRR",             value: fmtMoney(revenue.mrr),                color: "text-amber-400", sub: "monthly recurring revenue" },
+                    { label: "All-Time Revenue", value: fmtMoney(revenue.allTimeRevenue),     color: "text-green-400", sub: "succeeded charges (last 100)" },
+                    { label: "Active Proxy Subs", value: revenue.activeProxySubscriptions,    color: "text-white",     sub: "proxy subscriptions" },
+                    { label: "Active Licenses",  value: revenue.activeSoftwareLicenses,       color: "text-white",     sub: "software licenses" },
+                  ].map((c) => (
+                    <div key={c.label} className="border border-zinc-800 rounded-2xl p-5 bg-gradient-to-br from-black via-stone-950 to-black">
+                      <p className="text-xs text-zinc-500 uppercase tracking-wide mb-2">{c.label}</p>
+                      <p className={`text-3xl font-extrabold ${c.color}`}>{c.value}</p>
+                      <p className="text-xs text-zinc-600 mt-1">{c.sub}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Plan breakdown + Recent charges side by side */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* MRR by plan */}
+                  <div className="border border-zinc-800 rounded-2xl overflow-hidden">
+                    <div className="px-5 py-4 border-b border-zinc-800">
+                      <h2 className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                        <IconCurrencyDollar size={15} className="text-amber-400" /> MRR by Plan
+                      </h2>
+                    </div>
+                    {revenue.planBreakdown.length === 0 ? (
+                      <div className="text-center py-10 text-zinc-600 text-sm">No active subscriptions.</div>
+                    ) : (
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-zinc-800">
+                            <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase tracking-wide font-semibold">Plan</th>
+                            <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase tracking-wide font-semibold">Subs</th>
+                            <th className="px-4 py-3 text-right text-xs text-zinc-500 uppercase tracking-wide font-semibold">MRR</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {revenue.planBreakdown.map((p) => (
+                            <tr key={p.label} className="border-b border-zinc-800/60">
+                              <td className="px-4 py-3 text-zinc-300">{p.label}</td>
+                              <td className="px-4 py-3 text-zinc-500">{p.count}</td>
+                              <td className="px-4 py-3 text-right text-amber-400 font-semibold">{fmtMoney(p.mrrCents)}</td>
+                            </tr>
+                          ))}
+                          <tr className="bg-zinc-900/50">
+                            <td className="px-4 py-3 text-xs text-zinc-500 font-bold uppercase" colSpan={2}>Total MRR</td>
+                            <td className="px-4 py-3 text-right text-white font-extrabold">{fmtMoney(revenue.mrr)}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    )}
+                  </div>
+
+                  {/* Recent charges */}
+                  <div className="border border-zinc-800 rounded-2xl overflow-hidden">
+                    <div className="px-5 py-4 border-b border-zinc-800">
+                      <h2 className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                        <IconCreditCard size={15} className="text-amber-400" /> Recent Charges
+                      </h2>
+                    </div>
+                    {revenue.recentCharges.length === 0 ? (
+                      <div className="text-center py-10 text-zinc-600 text-sm">No charges found.</div>
+                    ) : (
+                      <div className="divide-y divide-zinc-800/60">
+                        {revenue.recentCharges.slice(0, 12).map((c) => (
+                          <div key={c.id} className="px-4 py-3 flex items-center justify-between gap-3">
+                            <div className="min-w-0">
+                              <p className="text-zinc-300 text-sm truncate">{c.email ?? c.description ?? c.id}</p>
+                              <p className="text-zinc-600 text-xs">{fmtDate(c.created)}</p>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0">
+                              <span className={`text-xs px-2 py-0.5 rounded-full font-semibold border ${c.status === "succeeded" ? "bg-green-900/40 text-green-300 border-green-700" : "bg-red-900/40 text-red-300 border-red-700"}`}>
+                                {c.status}
+                              </span>
+                              <span className="text-sm font-bold text-white">
+                                {fmtMoney(c.amount)}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+        {/* ── DEMOS ─────────────────────────────────────────────────── */}
+        {tab === "demos" && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-bold">Demo Bookings</h2>
+              <span className="text-sm text-zinc-500">{demos.length} total</span>
+            </div>
+            {demos.length === 0 ? (
+              <div className="border border-zinc-800 rounded-2xl p-10 text-center text-zinc-600 text-sm">No demo bookings yet.</div>
+            ) : (
+              <div className="border border-zinc-800 rounded-2xl overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-zinc-900/80">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Name</th>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Email</th>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Company</th>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Interest</th>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Status</th>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Date</th>
+                      <th className="px-4 py-3 text-left text-xs text-zinc-500 uppercase">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-800/60">
+                    {demos.map((demo) => (
+                      <tr key={demo._id} className="hover:bg-zinc-900/40">
+                        <td className="px-4 py-3 text-zinc-200 font-medium">{demo.name}</td>
+                        <td className="px-4 py-3 text-zinc-400">{demo.email}</td>
+                        <td className="px-4 py-3 text-zinc-400">{demo.company ?? "—"}</td>
+                        <td className="px-4 py-3 text-zinc-400 capitalize">{demo.interest ?? "—"}</td>
+                        <td className="px-4 py-3">
+                          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${
+                            demo.status === "pending"   ? "bg-amber-900/40 text-amber-300 border-amber-700" :
+                            demo.status === "scheduled" ? "bg-blue-900/40 text-blue-300 border-blue-700" :
+                            demo.status === "completed" ? "bg-green-900/40 text-green-300 border-green-700" :
+                                                          "bg-zinc-800 text-zinc-400 border-zinc-700"
+                          }`}>{demo.status}</span>
+                        </td>
+                        <td className="px-4 py-3 text-zinc-600 text-xs">{fmt(demo.createdAt)}</td>
+                        <td className="px-4 py-3">
+                          <div className="flex gap-2">
+                            {demo.status === "pending" && (
+                              <button
+                                disabled={demoStatusUpdating === demo._id}
+                                onClick={async () => {
+                                  setDemoStatusUpdating(demo._id);
+                                  await fetch(`/api/demo/${demo._id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: "scheduled" }) });
+                                  setDemoStatusUpdating(null);
+                                  await loadAll();
+                                }}
+                                className="text-xs px-2 py-1 rounded bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 border border-blue-700 transition-colors disabled:opacity-50"
+                              >
+                                Mark Scheduled
+                              </button>
+                            )}
+                            {demo.status === "scheduled" && (
+                              <button
+                                disabled={demoStatusUpdating === demo._id}
+                                onClick={async () => {
+                                  setDemoStatusUpdating(demo._id);
+                                  await fetch(`/api/demo/${demo._id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: "completed" }) });
+                                  setDemoStatusUpdating(null);
+                                  await loadAll();
+                                }}
+                                className="text-xs px-2 py-1 rounded bg-green-800/50 hover:bg-green-700/50 text-green-300 border border-green-700 transition-colors disabled:opacity-50"
+                              >
+                                Mark Completed
+                              </button>
+                            )}
+                            {(demo.status === "pending" || demo.status === "scheduled") && (
+                              <button
+                                disabled={demoStatusUpdating === demo._id}
+                                onClick={async () => {
+                                  setDemoStatusUpdating(demo._id);
+                                  await fetch(`/api/demo/${demo._id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: "cancelled" }) });
+                                  setDemoStatusUpdating(null);
+                                  await loadAll();
+                                }}
+                                className="text-xs px-2 py-1 rounded bg-red-900/40 hover:bg-red-800/40 text-red-300 border border-red-700 transition-colors disabled:opacity-50"
+                              >
+                                Cancel
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         )}
       </div>

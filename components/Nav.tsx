@@ -57,20 +57,7 @@ export function Nav() {
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">
               <SignedIn>
-                <UserButton 
-                  appearance={{
-                    elements: {
-                      formButtonPrimary: {
-                        fontSize: 14,
-                        textTransform: 'none',
-                        backgroundColor: '#FFFFFF',
-                        '&:hover, &:focus, &:active': {
-                          backgroundColor: '#49247A',
-                        },
-                      },
-                    },
-                  }}
-                />
+                <UserButton />
               </SignedIn>
               <SignedOut>
                 <SignInButton />
@@ -116,20 +103,7 @@ export function Nav() {
                 className="w-full"
               >
                 <SignedIn>
-                      <UserButton 
-                        appearance={{
-                        elements: {
-                        formButtonPrimary: {
-                        fontSize: 14,
-                        textTransform: 'none',
-                        backgroundColor: '#FFFFFF',
-                        '&:hover, &:focus, &:active': {
-                          backgroundColor: '#49247A',
-                        },
-                      },
-                    },
-                  }}
-                      />
+                      <UserButton />
                     </SignedIn>
                     <SignedOut>
                       <SignInButton forceRedirectUrl="/Dashboard" />
