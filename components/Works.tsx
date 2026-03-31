@@ -12,14 +12,14 @@ export function HomePriceCard() {
       src: "/images/mystic-mountains.jpg",
     },
     {
-      title: "Residential Proxies",
-      button: "Buy Now",
-      src: "/images/urban-dreams.jpg",
-    },
-    {
       title: "5G Proxies",
       button: "Buy Now",
       src: "/images/neon-nights.jpg",
+    },
+    {
+      title: "Proxy Management Software",
+      button: "Buy Now",
+      src: "/images/urban-dreams.jpg",
     },
     {
       title: "Custom Plans",

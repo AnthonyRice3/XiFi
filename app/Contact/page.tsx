@@ -1,22 +1,34 @@
-import FaqSection from '@/components/FaqSection'
+"use client";
 
+import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import FaqSection from '@/components/FaqSection'
 import { PriceHero } from '@/components/PriceHero'
 import WaitlistSection from '@/components/Waitlist'
-import React from 'react'
+import { SupportTicketModal } from '@/components/SupportTicketModal'
 
-const page = () => {
+export default function ContactPage() {
+  const [ticketModalOpen, setTicketModalOpen] = useState(false);
+  const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  function handleContactSupport() {
+    if (!isSignedIn) {
+      router.push("/sign-in?redirect_url=/Contact");
+      return;
+    }
+    setTicketModalOpen(true);
+  }
+
   return (
     <main className="relative bg-black flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
-        <div className="  w-full ">
+        {ticketModalOpen && <SupportTicketModal onClose={() => setTicketModalOpen(false)} />}
+        <div className="w-full">
             <PriceHero />
             <WaitlistSection />
-            <FaqSection />
-            {/* <Form /> */}
-            
-            
+            <FaqSection onContactSupport={handleContactSupport} />
         </div>
     </main>
   )
 }
-
-export default page

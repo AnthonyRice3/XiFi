@@ -8,11 +8,51 @@ import { Nav } from "@/components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://proxifi.net";
+
 export const metadata: Metadata = {
-  title: "ProxiFi",
-  description: "ProxiFi Home",
-  icons: {
-    icon: '/favicon.ico',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "ProXiFi — Enterprise Mobile Proxy Platform",
+    template: "%s | ProXiFi",
+  },
+  description:
+    "Real 4G/5G mobile proxies powered by genuine SIM cards. Auto IP rotation, anti-detection, SOCKS5 & HTTP support. Built for scraping, automation, and marketing at scale.",
+  keywords: [
+    "mobile proxy",
+    "4G proxy",
+    "5G proxy",
+    "residential proxy",
+    "IP rotation",
+    "web scraping proxy",
+    "anti-detect proxy",
+    "SOCKS5 proxy",
+    "HTTP proxy",
+    "ProXiFi",
+    "proxy manager",
+    "mobile IP",
+  ],
+  authors: [{ name: "ProXiFi" }],
+  creator: "ProXiFi",
+  icons: { icon: "/favicon.ico" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "ProXiFi",
+    title: "ProXiFi — Enterprise Mobile Proxy Platform",
+    description:
+      "Real 4G/5G mobile proxies powered by genuine SIM cards. Auto IP rotation, anti-detection, and blazing-fast speeds for scraping, automation & marketing.",
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ProXiFi — Enterprise Mobile Proxy Platform",
+    description:
+      "Real 4G/5G mobile proxies. Auto IP rotation, anti-detection & SOCKS5/HTTP. Built for serious automation.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -199,7 +199,7 @@ const TAB_ICONS: Record<FaqCategory, string> = {
   'Support':          'ðŸ’¬',
 };
 
-export default function FaqSection() {
+export default function FaqSection({ onContactSupport }: { onContactSupport?: () => void }) {
   const categories = Object.keys(faqData) as FaqCategory[];
   const [activeCategory, setActiveCategory] = useState<FaqCategory>(categories[0]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -274,12 +274,21 @@ export default function FaqSection() {
         <p className="text-zinc-300 font-medium">Still have questions?</p>
         <p className="text-zinc-500 text-sm mt-1 mb-4">Our team typically responds within 4 hours on business days.</p>
         <div className="flex flex-wrap justify-center gap-3">
-          <a
-            href="/Contact"
-            className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-lg text-sm transition-colors"
-          >
-            Contact Support
-          </a>
+          {onContactSupport ? (
+            <button
+              onClick={onContactSupport}
+              className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-lg text-sm transition-colors"
+            >
+              Contact Support
+            </button>
+          ) : (
+            <a
+              href="/Contact"
+              className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-lg text-sm transition-colors"
+            >
+              Contact Support
+            </a>
+          )}
           <a
             href="/Docs"
             className="px-5 py-2.5 border border-zinc-700 hover:border-amber-500/50 text-zinc-300 hover:text-white rounded-lg text-sm transition-colors"

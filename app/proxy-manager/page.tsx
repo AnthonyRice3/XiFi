@@ -1,7 +1,8 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import {
   IconDeviceMobile,
   IconRefresh,
@@ -158,14 +159,29 @@ const INCLUDES = [
 
 export default function ProxyManagerPage() {
   const router = useRouter();
+  const { isSignedIn, isLoaded } = useUser();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.replace("/sign-in?redirect_url=/proxy-manager");
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   const searchParams = typeof window !== "undefined"
     ? new URLSearchParams(window.location.search)
     : null;
   const success = searchParams?.get("success") === "1";
   const canceled = searchParams?.get("canceled") === "1";
+
+  if (!isLoaded || !isSignedIn) {
+    return (
+      <main className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-400" />
+      </main>
+    );
+  }
 
   async function handlePurchase() {
     setLoading(true);

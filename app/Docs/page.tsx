@@ -29,7 +29,7 @@ const SECTIONS = [
   { id: "problem-solution",  label: "The Problem & The Solution",      icon: <IconAffiliate size={16} /> },
   { id: "use-cases",         label: "Use Cases & Industry Applications", icon: <IconAffiliate size={16} /> },
   { id: "roadmap",           label: "Roadmap",                         icon: <IconMap2 size={16} /> },
-  { id: "financials",        label: "Financial Projections",           icon: <IconChartBar size={16} /> },
+  // { id: "financials",        label: "Financial Projections",           icon: <IconChartBar size={16} /> },
   { id: "technicals",        label: "The Technicals",                  icon: <IconCpu size={16} /> },
   { id: "core-features",     label: "Core Features",                   icon: <IconLayoutGrid size={16} /> },
   { id: "technical-design",  label: "Technical Design",                icon: <IconServer size={16} /> },
@@ -352,45 +352,45 @@ function Roadmap() {
   );
 }
 
-function Financials() {
-  return (
-    <>
-      <SectionHeading>Financial Projections</SectionHeading>
-      <P>
-        ProXiFi operates a dual revenue model: recurring monthly subscriptions for the hosted proxy service,
-        and one-time license sales for the Proxy Manager software. The following projections are based on
-        conservative adoption assumptions and do not account for enterprise or white-label contracts.
-      </P>
-      <SubHeading>Revenue Streams</SubHeading>
-      <Table
-        headers={["Product", "Model", "Price", "Margin Profile"]}
-        rows={[
-          ["Starter Proxy",         "Monthly subscription", "$55/mo",    "~60% after infrastructure"],
-          ["Growth Proxy",          "Monthly subscription", "$70/mo",    "~65% after infrastructure"],
-          ["Standard Proxy",        "Monthly subscription", "$90/mo",    "~72% after infrastructure"],
-          ["Premium Proxy",         "Monthly subscription", "$105/mo",   "~74% after infrastructure"],
-          ["Proxy Manager License", "One-time",             "$1,500",    "~85% (software only)"],
-        ]}
-      />
-      <SubHeading>Year 1 Targets</SubHeading>
-      <Table
-        headers={["Metric", "6 Months", "12 Months"]}
-        rows={[
-          ["Active proxy subscribers", "50",      "200"],
-          ["Proxy Manager licenses sold", "10",   "40"],
-          ["Monthly Recurring Revenue", "$3,250", "$15,250"],
-          ["Annual License Revenue", "$15,000",   "$60,000"],
-          ["Combined Annual Revenue", "~$54K",    "~$243K"],
-        ]}
-      />
-      <P>
-        These projections assume organic growth through SEO, community channels, and direct outreach to
-        automation and digital marketing communities. Enterprise contracts and reseller agreements are not
-        included and represent upside to these numbers.
-      </P>
-    </>
-  );
-}
+// function Financials() {
+//   return (
+//     <>
+//       <SectionHeading>Financial Projections</SectionHeading>
+//       <P>
+//         ProXiFi operates a dual revenue model: recurring monthly subscriptions for the hosted proxy service,
+//         and one-time license sales for the Proxy Manager software. The following projections are based on
+//         conservative adoption assumptions and do not account for enterprise or white-label contracts.
+//       </P>
+//       <SubHeading>Revenue Streams</SubHeading>
+//       <Table
+//         headers={["Product", "Model", "Price", "Margin Profile"]}
+//         rows={[
+//           ["Starter Proxy",         "Monthly subscription", "$55/mo",    "~60% after infrastructure"],
+//           ["Growth Proxy",          "Monthly subscription", "$70/mo",    "~65% after infrastructure"],
+//           ["Standard Proxy",        "Monthly subscription", "$90/mo",    "~72% after infrastructure"],
+//           ["Premium Proxy",         "Monthly subscription", "$105/mo",   "~74% after infrastructure"],
+//           ["Proxy Manager License", "One-time",             "$1,500",    "~85% (software only)"],
+//         ]}
+//       />
+//       <SubHeading>Year 1 Targets</SubHeading>
+//       <Table
+//         headers={["Metric", "6 Months", "12 Months"]}
+//         rows={[
+//           ["Active proxy subscribers", "50",      "200"],
+//           ["Proxy Manager licenses sold", "10",   "40"],
+//           ["Monthly Recurring Revenue", "$3,250", "$15,250"],
+//           ["Annual License Revenue", "$15,000",   "$60,000"],
+//           ["Combined Annual Revenue", "~$54K",    "~$243K"],
+//         ]}
+//       />
+//       <P>
+//         These projections assume organic growth through SEO, community channels, and direct outreach to
+//         automation and digital marketing communities. Enterprise contracts and reseller agreements are not
+//         included and represent upside to these numbers.
+//       </P>
+//     </>
+//   );
+// }
 
 function Technicals() {
   return (
@@ -775,7 +775,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
   "problem-solution": <ProblemSolution />,
   "use-cases":        <UseCases />,
   "roadmap":          <Roadmap />,
-  "financials":       <Financials />,
+  // "financials":       <Financials />,
   "technicals":       <Technicals />,
   "core-features":    <CoreFeatures />,
   "technical-design": <TechnicalDesign />,

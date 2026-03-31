@@ -14,14 +14,14 @@ const GetStartedHero = () => {
 
       <div className="flex justify-center relative z-10">
         <div className=" flex flex-col items-center justify-center">
-          <p className="uppercase tracking-widest text-2xl text-center text-zinc-400 max-w-150 pt-12 md:text-xl">
+          <p className="uppercase tracking-widest text-2xl text-center text-zinc-400 max-w-150 pt-12 md:text-xl bg-black/70 rounded-2xl px-6 py-4 md:bg-transparent md:rounded-none md:px-0 md:py-0">
             Instantly scale your scraping, marketing, and development workflows with real mobile IPs.<span className="text-amber-400 font-bold text-3xl mt-4 md:text-2xl">ProxiFi! </span> It&apos;s not a noun it&apos;s a Verb. We are currently in closed beta, but you can join the waitlist to be the first to experience the future of mobile proxies.
           </p>
           
           
           <div className="pb-48 md:hidden">
           <TextGenerateEffect
-            words="Privacy. Performance. Proxify!"
+            words="Privacy. Performance. ProXiFi!"
             className="text-center text-[40px] md:text-5xl lg:text-6xl "
           />
           </div>
