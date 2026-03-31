@@ -1,8 +1,9 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { IconCheck, IconLoader2, IconStar } from "@tabler/icons-react";
+import { useUserRole } from "@/lib/useUserRole";
 
 type PlanId = "proxy_starter" | "proxy_growth" | "proxy_standard" | "proxy_premium";
 
@@ -97,8 +98,15 @@ const PLANS: Plan[] = [
 
 export default function PlansPage() {
   const router = useRouter();
+  const { isAdmin, loaded } = useUserRole();
   const [loading, setLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (loaded && !isAdmin) {
+      router.replace("/GetStarted");
+    }
+  }, [loaded, isAdmin, router]);
 
   async function handleSubscribe(planId: PlanId) {
     setLoading(planId);

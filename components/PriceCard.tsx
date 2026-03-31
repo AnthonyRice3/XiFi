@@ -1,6 +1,10 @@
 ﻿"use client";
 
-import { IconCheck, IconStar } from "@tabler/icons-react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { IconCheck, IconStar, IconLoader2 } from "@tabler/icons-react";
+import { useUserRole } from "@/lib/useUserRole";
 
 const PLANS = [
   {
@@ -80,6 +84,31 @@ const PLANS = [
 ];
 
 export default function PriceCard() {
+  const router = useRouter();
+  const { isSignedIn } = useUser();
+  const { isAdmin } = useUserRole();
+  const [loading, setLoading] = useState<string | null>(null);
+
+  async function handleCheckout(planKey: string) {
+    if (!isSignedIn || !isAdmin) {
+      router.push("/GetStarted");
+      return;
+    }
+    setLoading(planKey);
+    try {
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: planKey }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Checkout failed");
+      router.push(data.url);
+    } catch {
+      setLoading(null);
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <h2 className="text-center text-3xl font-bold text-white mb-2">Mobile Proxy Plans</h2>
@@ -130,13 +159,16 @@ export default function PriceCard() {
 
             <button
               type="button"
-              className={`mt-6 w-full font-semibold py-2.5 rounded-xl transition-colors ${
+              disabled={loading === plan.planKey}
+              onClick={() => handleCheckout(plan.planKey)}
+              className={`mt-6 w-full font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 disabled:opacity-60 ${
                 plan.highlight
                   ? "bg-amber-600 hover:bg-amber-500 text-white"
                   : "bg-zinc-800 hover:bg-zinc-700 text-white"
               }`}
             >
-              Get Started
+              {loading === plan.planKey && <IconLoader2 size={16} className="animate-spin" />}
+              Get Started — ${plan.monthly}/mo
             </button>
           </div>
         ))}

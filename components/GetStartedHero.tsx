@@ -15,7 +15,7 @@ const GetStartedHero = () => {
       <div className="flex justify-center relative z-10">
         <div className=" flex flex-col items-center justify-center">
           <p className="uppercase tracking-widest text-2xl text-center text-zinc-400 max-w-150 pt-12 md:text-xl">
-            Instantly scale your scraping, marketing, and development workflows with real mobile IPs. It&apos;s not a noun it&apos;s a Verb. 
+            Instantly scale your scraping, marketing, and development workflows with real mobile IPs.<span className="text-amber-400 font-bold text-3xl mt-4 md:text-2xl">ProxiFi! </span> It&apos;s not a noun it&apos;s a Verb. We are currently in closed beta, but you can join the waitlist to be the first to experience the future of mobile proxies.
           </p>
           
           

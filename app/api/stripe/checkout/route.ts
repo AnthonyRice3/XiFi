@@ -25,6 +25,13 @@ export async function POST(req: Request) {
 
     await connectDB();
 
+    // Closed beta: only admins/moderators can checkout
+    const existingUser = await User.findOne({ clerkUserId: userId }).lean() as { role?: string } | null;
+    const role = existingUser?.role ?? "user";
+    if (role !== "admin" && role !== "moderator") {
+      return NextResponse.json({ error: "Closed beta — join the waitlist at /GetStarted" }, { status: 403 });
+    }
+
     const clerkUser = await currentUser();
     const email = clerkUser?.emailAddresses[0]?.emailAddress ?? "";
 

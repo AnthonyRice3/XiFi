@@ -1,7 +1,10 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { IconCheck, IconX } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { IconCheck, IconX, IconLoader2 } from "@tabler/icons-react";
+import { useUserRole } from "@/lib/useUserRole";
 
 const PLANS = [
   { name: "Starter", monthly: 55, type: "Shared", users: "1\u20133", data: "5GB", apiAccess: false as boolean | "priority", planKey: "proxy_starter" },
@@ -22,8 +25,32 @@ function planTierOrder(data: string): number {
 
 export default function DynamicPricingGBs() {
   const [selectedTier, setSelectedTier] = useState<DataTier>("5GB");
+  const router = useRouter();
+  const { isSignedIn } = useUser();
+  const { isAdmin } = useUserRole();
+  const [loading, setLoading] = useState<string | null>(null);
 
   const displayPlans = PLANS.filter((p) => planTierOrder(p.data) >= tierOrder[selectedTier]);
+
+  async function handleCheckout(planKey: string) {
+    if (!isSignedIn || !isAdmin) {
+      router.push("/GetStarted");
+      return;
+    }
+    setLoading(planKey);
+    try {
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: planKey }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Checkout failed");
+      router.push(data.url);
+    } catch {
+      setLoading(null);
+    }
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 min-h-[550px]">
@@ -90,9 +117,12 @@ export default function DynamicPricingGBs() {
 
             <button
               type="button"
-              className="mt-6 w-full bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 rounded-xl transition-colors"
+              disabled={loading === plan.planKey}
+              onClick={() => handleCheckout(plan.planKey)}
+              className="mt-6 w-full bg-amber-600 hover:bg-amber-500 disabled:opacity-60 text-white font-semibold py-2 rounded-xl transition-colors flex items-center justify-center gap-2"
             >
-              {plan.planKey === "proxy_starter" || plan.planKey === "proxy_growth" ? "Get Started" : "Get Started"}
+              {loading === plan.planKey && <IconLoader2 size={16} className="animate-spin" />}
+              Get Started — ${plan.monthly}/mo
             </button>
           </div>
         ))}

@@ -1,5 +1,5 @@
 import FaqSection from '@/components/FaqSection'
-import { Form } from '@/components/Form'
+
 import { PriceHero } from '@/components/PriceHero'
 import WaitlistSection from '@/components/Waitlist'
 import React from 'react'
