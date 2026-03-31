@@ -6,7 +6,6 @@ import {
   IconBulb,
   IconAffiliate,
   IconMap2,
-  IconChartBar,
   IconCpu,
   IconLayoutGrid,
   IconServer,
