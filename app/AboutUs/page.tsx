@@ -11,6 +11,7 @@ import { GlowGrid } from '@/components/GlowGrid'
 import Cta from '@/components/Cta'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/AboutUs" },
   title: "About Us",
   description:
     "Learn about ProXiFi — the team and mission behind the most advanced mobile proxy platform. Real 4G/5G cellular infrastructure for automation, scraping & marketing.",

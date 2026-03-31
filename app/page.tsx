@@ -6,6 +6,7 @@ import WhyProxy from "@/components/WhyProxy";
 import { HomePriceCard } from "@/components/Works";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   title: "ProXiFi — Enterprise Mobile Proxy Platform",
   description:
     "Real 4G/5G mobile proxies on genuine SIM cards. Auto IP rotation, anti-detection, and blazing-fast speeds for scraping, automation & marketing at scale.",

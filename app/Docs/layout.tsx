@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/Docs" },
   title: "Documentation",
   description:
     "ProXiFi documentation — setup guides, API reference, integration tutorials for Puppeteer, Playwright, AdsPower & more. Everything you need to get started with mobile proxies.",

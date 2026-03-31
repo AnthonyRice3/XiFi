@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/GetStarted" },
   title: "Get Started — Join the Closed Beta",
   description:
     "ProXiFi is in closed beta. Join the waitlist to get priority access to real 4G/5G mobile proxies with auto IP rotation, anti-detection, and developer-first APIs.",

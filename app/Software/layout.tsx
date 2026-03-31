@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/Software" },
   title: "ProXiFi Software — Proxy Management Plans",
   description:
     "ProXiFi proxy management software plans — Starter (free), Basic, Premium & Business. Auto proxy generation, IP rotation, Android device management & more.",

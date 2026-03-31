@@ -56,6 +56,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "ProXiFi",
+      url: siteUrl,
+      logo: `${siteUrl}/favicon.ico`,
+      description:
+        "Enterprise mobile proxy platform powered by real 4G/5G SIM cards. Auto IP rotation, anti-detection, SOCKS5 & HTTP support.",
+      sameAs: [],
+    },
+    {
+      "@type": "WebSite",
+      name: "ProXiFi",
+      url: siteUrl,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,6 +85,10 @@ export default function RootLayout({
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <html lang="en">
         <body className={inter.className}>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
           
             <nav>
               <Nav />

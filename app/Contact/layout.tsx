@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/Contact" },
   title: "Contact & Support",
   description:
     "Get in touch with the ProXiFi team. Submit a support ticket, browse FAQs, or join our waitlist for early access to enterprise mobile proxies.",
