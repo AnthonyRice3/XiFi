@@ -24,15 +24,14 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <main className="relative ">
-        <Hero />
-        <MissionVision />
-        <GlowGrid />
-        <AboutSectionWrapper />
-        
-        <Cta />
+    <main className="relative w-full max-w-4xl mx-auto px-2 sm:px-4 md:px-8">
+      <Hero />
+      <MissionVision />
+      <GlowGrid />
+      <AboutSectionWrapper />
+      <Cta />
     </main>
-  )
-}
+  );
+};
 
 export default page

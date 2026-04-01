@@ -11,7 +11,7 @@ export function Magnifier() {
 
   return (
     <div>
-      <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 my-10">
+      <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-10 md:p-12 my-10">
         <Rays />
         <Beams />
         <div className="relative z-10">

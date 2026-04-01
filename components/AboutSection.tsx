@@ -12,20 +12,20 @@ interface AboutSectionProps {
 
 const AboutSection: React.FC<AboutSectionProps> = ({  description, description2 }) => {
   return (
-    <section className="relative mx-auto flex pt-12 px-32 flex-col h-full md:flex-row items-center justify-center gap-6 p-6 bg-black rounded-t-3xl shadow-md ">
+    <section className="relative w-full max-w-4xl mx-auto flex pt-12 px-2 sm:px-4 md:px-8 flex-col h-full md:flex-row items-center justify-center gap-6 p-4 bg-black rounded-t-3xl shadow-md ">
       {/* Left Side: YouTube Video */}
-      <div className="w-auto md:w-1/2 md:h-full text-center px-12">
-        <TextGenerateEffect words="Privacy. Performance. Proxify!"
-            className="text-center text-[40px] md:text-5xl lg:text-6xl " />
-        <p className="text-zinc-500 text-base leading-9 font-semibold">{description}</p>
+      <div className="w-full md:w-1/2 md:h-full text-center px-2 sm:px-4 md:px-8">
+        <TextGenerateEffect words="Privacy. Performance. ProXiFi!"
+            className="text-center text-[32px] md:text-5xl lg:text-6xl " />
+        <p className="text-zinc-500 text-base leading-8 font-semibold">{description}</p>
         <br />
-        <p className="text-zinc-500 text-base leading-9 font-semibold">{description2}</p>
+        <p className="text-zinc-500 text-base leading-8 font-semibold">{description2}</p>
       </div>
 
       {/* Right Side: Info */}
       <div className="w-full h-full md:w-1/2 space-y-4 ">
-      <div className="w-full h-1/3">
-      <Magnifier />
+        <div className="w-full h-1/3">
+          <Magnifier />
         </div>
       </div>
     </section>
@@ -36,24 +36,8 @@ export default function AboutSectionWrapper() {
   return (
     <AboutSection
       videoId="KiBLMK7_ObE"
-      description="hi welcome to proxifi hi welcome to proxifi hi welcome to proxifi hi welcome to proxifi Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
-
-Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
-
-Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.
-
-Praesent dapibus neque id cursus faucibus tortor neque egestas auguae eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi tincidunt quis accumsan porttitor facilisis luctus metus.
-
-"
-
-    description2="hi welcome to proxifi hi welcome to proxifi hi welcome to proxifi hi welcome to proxifi Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
-
-Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
-
-Morbi in sem quis dui placerat ornare.Phasellus Nam mmodo a sodales sit amet nisi. Praesent dapibus neque id cursus faucibus tortor neque egestas auguae eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi tincidunt quis accumsan porttitor facilisis luctus metus.
-
-Phasellus Nam mmodo a sodales sit amet nisi."
+      description="ProXiFi is built by a passionate team of engineers, network specialists, and privacy advocates. We believe in empowering businesses and individuals with real, reliable, and ethical mobile proxies. Our backgrounds span telecom, cybersecurity, and large-scale automation—giving us the expertise to deliver a platform that's both robust and user-friendly."
+      description2="We're committed to transparency, innovation, and customer success. Every feature is designed in-house, and we pride ourselves on responsive support and continuous improvement. Whether you're a solo developer or a global enterprise, our team is here to help you unlock the full potential of mobile proxy technology."
     />
-    
   );
 }

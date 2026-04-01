@@ -6,7 +6,7 @@ export function Sparkles() {
   return (
     <div className="h-[40rem] py-12 w-ful flex flex-col items-center justify-center overflow-hidden rounded-md">
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-amber-400 rounded-full opacity-20 blur-3xl"></div>
-      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-700 rounded-full opacity-20 blur-3xl"></div>
+      <div className="absolute -bottom-20 right-0 w-72 h-72 bg-amber-700 rounded-full opacity-20 blur-3xl"></div>
       <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-zinc-200 relative z-20 pt-60">
         Let&apos;s ProXiFi
       </h1>

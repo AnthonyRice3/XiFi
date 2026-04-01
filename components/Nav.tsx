@@ -48,7 +48,7 @@ export function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full bg-black py-12">
+    <div className="relative w-full bg-black py-12 z-50">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="bg-zinc-400">

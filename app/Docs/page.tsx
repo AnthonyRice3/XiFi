@@ -15,7 +15,7 @@ import {
   IconCreditCard,
   IconCode,
   IconFileText,
-  IconMenu2,
+  IconLayoutSidebar,
   IconX,
   IconCheck,
 } from "@tabler/icons-react";
@@ -818,13 +818,14 @@ export default function DocsPage() {
     <div className="min-h-screen bg-black text-white flex flex-col">
 
       {/* ── Mobile top bar ───────────────────────────────────────── */}
-      <div className="lg:hidden sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-black border-b border-zinc-800">
+      <div className="lg:hidden sticky top-0 z-45 flex items-center justify-between px-4 py-3 bg-black border-b border-zinc-800">
         <span className="text-amber-400 font-bold text-sm">ProXiFi Docs</span>
         <button
           onClick={() => setMobileOpen((o) => !o)}
           className="text-zinc-400 hover:text-white"
+          aria-label="Open sidebar"
         >
-          {mobileOpen ? <IconX size={22} /> : <IconMenu2 size={22} />}
+          {mobileOpen ? <IconX size={22} /> : <IconLayoutSidebar size={22} />}
         </button>
       </div>
 
