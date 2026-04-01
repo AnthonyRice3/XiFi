@@ -151,7 +151,18 @@ export async function POST(req: Request) {
         console.error("[webhook] proxy subscription email failed:", emailErr);
       }
 
-      const plan = (sub.metadata?.plan ?? "shared_mobile") as "shared_mobile" | "dedicated_mobile";
+      const rawPlan = sub.metadata?.plan ?? "shared_mobile";
+      // Map checkout plan keys to valid proxy types
+      const PROXY_TYPE_MAP: Record<string, "shared_mobile" | "dedicated_mobile"> = {
+        proxy_starter:   "shared_mobile",
+        proxy_growth:    "shared_mobile",
+        proxy_standard:  "dedicated_mobile",
+        proxy_premium:   "dedicated_mobile",
+        shared_mobile:   "shared_mobile",
+        dedicated_mobile:"dedicated_mobile",
+      };
+      const proxyType = PROXY_TYPE_MAP[rawPlan] ?? "shared_mobile";
+
       await Subscription.findOneAndUpdate(
         { stripeSubscriptionId: sub.id },
         {
@@ -159,7 +170,7 @@ export async function POST(req: Request) {
           stripeSubscriptionId: sub.id,
           stripeCustomerId: sub.customer as string,
           stripePriceId: sub.items.data[0].price.id,
-          plan,
+          plan: proxyType,
           status: sub.status as string,
           currentPeriodStart: new Date(subAny.current_period_start * 1_000),
           currentPeriodEnd: new Date(subAny.current_period_end * 1_000),
@@ -169,12 +180,12 @@ export async function POST(req: Request) {
       );
       try {
         const existingCount = await Proxy.countDocuments({ clerkUserId });
-        const provisioned = await provisionProxy(plan, existingCount);
+        const provisioned = await provisionProxy(proxyType, existingCount);
         await Proxy.create({
           clerkUserId,
           subscriptionId: sub.id,
-          type: plan,
-          label: `${plan === "dedicated_mobile" ? "Dedicated" : "Shared"} Mobile Proxy #${existingCount + 1}`,
+          type: proxyType,
+          label: `${proxyType === "dedicated_mobile" ? "Dedicated" : "Shared"} Mobile Proxy #${existingCount + 1}`,
           host: provisioned.host,
           httpPort: provisioned.httpPort,
           socks5Port: provisioned.socks5Port,
